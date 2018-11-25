@@ -1,0 +1,100 @@
+ADVENTURER CLASSES
+==================
+
+Fighter
+-------
+	- uses swords, axes, shields
+	- good in front line
+	- balanced stats, mix of offensive and defensive capabilities
+	Skills
+	------
+	Power Strike
+		- can only be used in front line
+		- damage to one enemy in front line
+	Leaping Smash
+		- used from either line
+		- if in front line, damage to one enemy in back line
+		- if in back line, damage to one enemy in front line, move to front line
+	Shield Up
+		- used from either line, requires shield
+		- if in front line, increases defense for a few turns
+		- if in back line, blocks a single ranged attack to the back line
+
+Knight
+------
+	- uses swords, shields
+	- good in front line
+	- endurance, strength
+	- focuses on defensive capabilities and buffs
+	Skills
+	------
+	Defend Line
+		- can only be used in the front line
+		- reduces damage to all of the front line for one turn
+			- small chance to block an attack to the back line
+	Defensive Aura
+		- used in either line
+		- increases defense stat of all adventurers
+	Shield Charge
+		- if in front line, bashes one enemy + chance to stun
+		- if in back line, blocks on attack + moves to front line
+
+Ranger
+------
+	- bows, crossbows
+	- good for back line
+	- dexterity
+	- offensive striker, ranged attacks can reach both enemy lines
+	- can either focus fire on one enemy or harrass all enemies
+	Skills
+	------
+	Focused Shot
+		- used in either line
+		- increased damage to one enemy
+		- increased critical chance
+	Arrow Barrage
+		- if in front line, moderate damage 2 - 3 times to some front line enemies
+		- if in back line, moderate damage 3 - 5 times to some enemies
+	Ignite Shot
+		- if in front line, fire damage to one enemy
+		- if in back line, lesser fire damage to all enemies in front line
+	
+
+
+Wizard
+------
+	- staffs, wands
+	- good for back line
+	- intelligence
+	- casts offensive spells which tend to focus on a single enemy
+	Skills
+	------
+	Firebolt
+		- medium fire damage to one enemy
+	Acid Splash
+		- if in front line, medium acid damage to one enemy
+		- if in back line, medium acid damage to one enemy, and chance of hitting surrounding enemies
+		- affected enemies do lesser damage on their next attack
+	Create Flame Sprite
+		- for the next three turns, deal lesser fire damage to a random enemy at the end of the Attack Phase
+
+
+Cleric
+	- staffs, maces, shields
+	- good for front line
+	- healing/ally support
+
+Bard
+	- musical instruments, throwing knives
+	- good in either line
+	- nimble, casts buffs on allies
+
+Barbarian
+	- swords, axes, hammers
+	- good in front line
+	- offensive striker, not good at taking hits; can shred front enemy lines
+
+Rogue
+	- daggers, throwing knives
+	- can shine in either line
+	- offensive striker, skills move the rogue back and forth between lines

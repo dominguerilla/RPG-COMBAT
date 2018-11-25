@@ -1,0 +1,23 @@
+STATUS SYSTEM
+=============
+
+Character Status
+----------------
+Health
+Mana/Stamina (depending on class -- interchangeable)
+Level
+
+
+Character Stats
+---------------
+Note that skills can scale off of any of these stats; classes just tend to have skills that benefit from the same group of stats
+Strength
+	- certain physical skills + physical damage resistance
+Intelligence
+	- magical skills + magical damage resistance
+Dexterity
+	- certain physical skills + turn order + evasion
+Endurance
+	- maximum health + damage resistance
+Luck
+	- critical chance + evasion
