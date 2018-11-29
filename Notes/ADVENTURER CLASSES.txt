@@ -80,9 +80,18 @@ Wizard
 
 
 Cleric
-	- staffs, maces, shields
-	- good for front line
-	- healing/ally support
+------
+	- staffs
+	- good for back line
+	- healing/ally support/buffs
+	Skills
+	------
+	Heal
+		- small heal to one ally
+	Prayer
+		- increase DEF to self, small heal to self
+	Soothing Chant
+		- ally regenerates small health for a few turns
 
 Bard
 	- musical instruments, throwing knives
