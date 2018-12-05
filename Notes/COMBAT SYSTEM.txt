@@ -21,17 +21,14 @@ Order Phase:
 ------------
 	- player gives orders to the party to decide what attack/move each member will do
 		- do normal attack, cast skill, use item, defend, attempt escape
-	- player also decides how they will support the party
-		- spells / items / actions that can affect either party or enemy
 	- once all party members have orders and the player has decided on their action, order phase is done
 
 Attack Phase:
 -------------
 	- all combatants will perform their actions
 	- turn order is based on initiative stat of each combatant
-	- player's action will take place either at the start, at the end, or right after a certain combatant performs their action
-		- it depends on the player's chosen action
 	- if, through the actions of either party, all members of a party are in the back line by the end of the Attack Phase, that line becomes the FRONT line
+	- ** The player has the opportunity to evade/block attacks that target them **
 
 ACTIONS
 =======
@@ -53,7 +50,7 @@ The actions that a combatant can perform are:
 	- ESCAPE
 		- combatant will attempt to escape from fight. If successful, all party members escape combat. 
 
-Player Actions:
+Player Specific Commands:
 	- Analyze:
 		- target: one enemy
 		- records information about targeted enemy; displays health, weaknesses, resistances
