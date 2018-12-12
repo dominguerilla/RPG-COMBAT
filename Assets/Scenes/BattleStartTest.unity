@@ -302,5 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 1
+  battleScenePrefab: {fileID: 1587717600227148, guid: faa4f833f65596543b84b37e35b32da7,
+    type: 2}
   leftParty: {fileID: 11400000, guid: 427818b5567c5a4498358047c3350b42, type: 2}
   rightParty: {fileID: 11400000, guid: 427818b5567c5a4498358047c3350b42, type: 2}

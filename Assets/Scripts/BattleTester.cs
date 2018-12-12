@@ -7,13 +7,16 @@ public class BattleTester : MonoBehaviour {
     public bool DebugMode;
 
     [SerializeField]
+    GameObject battleScenePrefab;
+    [SerializeField]
     NPCParty leftParty;
     [SerializeField]
     NPCParty rightParty;
-    FieldManager fManager;
+
+    BattleManager fManager;
 
     private void Awake() {
-        fManager = GetComponent<FieldManager>();    
+        fManager = GetComponent<BattleManager>();    
     }
 
     public void StartBattle(){
@@ -23,7 +26,7 @@ public class BattleTester : MonoBehaviour {
         Combatant[] rightCombatants = GenerateCombatants(rightParty);
         Debug.Log("Right party: " + rightCombatants.Length);
 
-        fManager.StartBattle(leftCombatants, rightCombatants);
+        fManager.StartBattle(leftCombatants, rightCombatants, battleScenePrefab);
     }
 
     public void EndBattle(){

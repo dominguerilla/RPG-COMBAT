@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FieldManager : MonoBehaviour {
     
+    // TODO might not need battleScenePrefab here
     public GameObject battleScenePrefab;
+
     public bool DebugMode;
     BattleManager bm;
 
@@ -19,10 +21,6 @@ public class FieldManager : MonoBehaviour {
         bm.StartBattle(left, right, battleScenePrefab);
     }
     
-    public void StartBattle(Combatant[] leftParty, Combatant[] rightParty){
-        bm.StartBattle(leftParty, rightParty, battleScenePrefab);
-    }
-
     public void EndBattle(){
         bm.EndBattle();
     }

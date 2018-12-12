@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Executes the transition between the field and a battle.
+/// Initializes battle 'stage', instantiates the combatant models, destroys stage after battle ends.
+/// </summary>
 public class SceneTransitioner : MonoBehaviour {
     
     public Transform scenePosition;
@@ -12,16 +16,16 @@ public class SceneTransitioner : MonoBehaviour {
         GameObject newScene = Instantiate(battleScene, scenePosition.position, scenePosition.rotation) as GameObject;
         activeBattleScene = newScene;
 
-        GameObject leftPartyPositionObjects = newScene.transform.Find("LeftParty").gameObject;
-        GameObject rightPartyPositionObjects = newScene.transform.Find("RightParty").gameObject;
+        GameObject leftPartyParent = newScene.transform.Find("LeftParty").gameObject;
+        GameObject rightPartyParent = newScene.transform.Find("RightParty").gameObject;
 
         Debug.Log("Left positions");
-        Transform[] leftPositions = GetPositions(leftPartyPositionObjects);
-        SpawnParty(leftParty, leftPositions);
+        Transform[] leftPositions = GetPositions(leftPartyParent);
+        SpawnParty(leftParty, leftPositions, leftPartyParent.transform);
 
         Debug.Log("Right positions");
-        Transform[] rightPositions = GetPositions(rightPartyPositionObjects);
-        SpawnParty(rightParty, rightPositions);
+        Transform[] rightPositions = GetPositions(rightPartyParent);
+        SpawnParty(rightParty, rightPositions, rightPartyParent.transform);
     }
 
     public void DestroyBattleScene(){
@@ -39,7 +43,7 @@ public class SceneTransitioner : MonoBehaviour {
         return positions.ToArray();
     }
 
-    public void SpawnParty(Combatant[] party, Transform[] positions){
+    public void SpawnParty(Combatant[] party, Transform[] positions, Transform parent = null){
         for(int i = 0; i < party.Length; i++){
             if(i >= positions.Length){
                 break;
@@ -47,7 +51,8 @@ public class SceneTransitioner : MonoBehaviour {
             GameObject.Instantiate<GameObject>(
                 party[i].GetData().GetModel(), 
                 positions[i].transform.position,
-                positions[i].transform.rotation);
+                positions[i].transform.rotation,
+                parent );
         }
     }
 }
