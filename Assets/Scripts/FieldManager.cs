@@ -5,6 +5,7 @@ using UnityEngine;
 public class FieldManager : MonoBehaviour {
     
     public GameObject battleScenePrefab;
+    public bool DebugMode;
     BattleManager bm;
 
 	// Use this for initialization
@@ -17,6 +18,10 @@ public class FieldManager : MonoBehaviour {
         Combatant[] right = GetRightParty();
         bm.StartBattle(left, right, battleScenePrefab);
     }
+    
+    public void StartBattle(Combatant[] leftParty, Combatant[] rightParty){
+        bm.StartBattle(leftParty, rightParty, battleScenePrefab);
+    }
 
     public void EndBattle(){
         bm.EndBattle();
@@ -26,7 +31,7 @@ public class FieldManager : MonoBehaviour {
         int count = 5;
         Combatant[] party = new Combatant[count];
         for (int i = 0; i < count; i++){
-            Combatant combatant = new Combatant(i, "Fighter " + i);
+            Combatant combatant = new Combatant(i, null);
             party[i] = combatant;
         }
         Debug.Log("Left party: " + party.Length);
@@ -37,7 +42,7 @@ public class FieldManager : MonoBehaviour {
         int count = 4;
         Combatant[] party = new Combatant[count];
         for (int i = 0; i < count; i++){
-            Combatant combatant = new Combatant(i, "Fighter " + i);
+            Combatant combatant = new Combatant(i, null);
             party[i] = combatant;
         }
         Debug.Log("Right party: " + party.Length);

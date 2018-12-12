@@ -1,0 +1,7 @@
+Battle scenes are spawned when a battle starts. The camera should be switched over to the battle scene, which should contain all of the assets needed to start a battle.
+
+This would include things like lighting, a stage, etc.
+
+Additionally, you need to have two GameObjects called LeftParty and RightParty. These gameobjects should hold other gameobjects named PositionX, where X is some number and PositionX gameobjects are named sequentially. These PositionX objects are where combatants of that party stand during the fight. 
+
+For example, LeftParty could have Position1 through Position4, and each combatant of the 'Left Party' would stand in a position.
