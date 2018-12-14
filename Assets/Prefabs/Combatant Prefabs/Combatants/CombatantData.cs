@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The innate stats that a combat entity has.
+/// These stats are used to calculate damage dealt, given, etc.
+/// </summary>
 [CreateAssetMenu(fileName = "New CombatantData", menuName = "Combatant Data", order = 51)]
 public class CombatantData : ScriptableObject {
 
