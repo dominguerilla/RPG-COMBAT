@@ -7,21 +7,42 @@ using UnityEngine;
 /// Triggers animations, generates battle data from combatant's stats,
 /// keeps track of current status of combatant.
 /// </summary>
+/// <remarks>
+/// The data flow of spawning a combatant:
+/// 1. Designer (you!) creates a CombatantData asset and fills out the fields
+/// 2. Whatever AI system that generates enemy parties uses CombatantData to generate a Combatant, and passes Combatants to the BattleManager to start a battle
+/// 3. BattleManager calculates the status of the Combatant based on its Data (hp, mp, attack, etc.) and then passes Combatant to SceneTransitioner
+/// 4. SceneTransitioner spawns the prefab model specified by the CombatantData of each Combatant, and registers the newly spawned GameObject to the Combatant class
+/// </remarks>
 public class Combatant {
     
     CombatantData combatantData;
-    GameObject combatantGO;
     int linePosition;
     string status;
     int hp;
     int mp;
     string buffs;
 
+    // fields relating to GameObject and components
+    GameObject combatantGO;
     Animator anim;
 
     public Combatant(int linePosition, CombatantData combatantData){
         this.linePosition = linePosition;
         this.combatantData = combatantData;
+    }
+
+    // Used to initialize the component fields of this combatant with what's found in the combatantGO
+    public void InitializeCombatantComponents() {
+        if(!combatantGO) {
+            Debug.LogError("Combatant does not have associated GameObject!");
+        }else {
+            this.anim = combatantGO.GetComponent<Animator>();
+        }
+    }
+
+    public void PlayAnimation(string trigger) {
+        this.anim.SetTrigger(trigger);
     }
 
     public CombatantData GetData(){

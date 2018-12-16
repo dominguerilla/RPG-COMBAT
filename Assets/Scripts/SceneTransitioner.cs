@@ -12,7 +12,17 @@ public class SceneTransitioner : MonoBehaviour {
     
     public Transform scenePosition;
     public Image battleFadeImage;
-    public UnityEvent OnBattleStart;
+    
+    /// <summary>
+    /// Called when the scene STARTS to fade in FROM black, during the transition from field to battle.
+    /// </summary>
+    public UnityEvent BeginTransitionStarted;
+
+    /// <summary>
+    /// Called when the scene STARTS to fade TO black, during the transition from battle to field.
+    /// </summary>
+    public UnityEvent EndTransitionStarted;
+
     [SerializeField]
     float fadeSpeed = 1.0f;
 
@@ -21,7 +31,8 @@ public class SceneTransitioner : MonoBehaviour {
     Light battleLight, returnLight;
 
     private void Awake() {
-        OnBattleStart = new UnityEvent();   
+        BeginTransitionStarted = new UnityEvent();
+        EndTransitionStarted = new UnityEvent();
     }
 
     public void CreateBattleScene(Combatant[] leftParty, Combatant[] rightParty, GameObject battleScene, Camera returnCam = null, Light returnLight = null){
@@ -57,15 +68,14 @@ public class SceneTransitioner : MonoBehaviour {
             this.returnLight.enabled = false;
         }
 
-        yield return StartCoroutine(FadeImage(0.0f));
         Transform[] leftPositions = GetPositions(leftPartyParent);
         SpawnParty(leftParty, leftPositions, leftPartyParent.transform);
 
         Transform[] rightPositions = GetPositions(rightPartyParent);
         SpawnParty(rightParty, rightPositions, rightPartyParent.transform);
 
-        OnBattleStart.Invoke();
-        yield return null;
+        BeginTransitionStarted.Invoke();
+        yield return StartCoroutine(FadeImage(0.0f));
     }
 
     public void DestroyBattleScene(){
@@ -73,6 +83,8 @@ public class SceneTransitioner : MonoBehaviour {
     }
 
     IEnumerator TakeDownBattleScene(){
+        EndTransitionStarted.Invoke();
+        BeginTransitionStarted.RemoveAllListeners();
         yield return StartCoroutine(FadeImage(1.0f));
         if(returnCam){
             returnCam.enabled = true;
@@ -95,8 +107,8 @@ public class SceneTransitioner : MonoBehaviour {
 
         Destroy(activeBattleScene);
         activeBattleScene = null;
+        EndTransitionStarted.RemoveAllListeners();
         yield return StartCoroutine(FadeImage(0.0f));
-        yield return null;
     }
 
     IEnumerator FadeImage(float alpha){
@@ -135,12 +147,16 @@ public class SceneTransitioner : MonoBehaviour {
             if(i >= positions.Length){
                 break;
             }
+            Combatant combatant = party[i];
             GameObject newObj = GameObject.Instantiate<GameObject>(
-                party[i].GetData().GetModel(), 
+                combatant.GetData().GetModel(), 
                 positions[i].transform.position,
                 positions[i].transform.rotation,
                 parent );
-            party[i].SetGameObject(newObj);
+            combatant.SetGameObject(newObj);
+            combatant.InitializeCombatantComponents();
+            BeginTransitionStarted.AddListener(delegate { combatant.PlayAnimation("OnSpawn"); });
+            EndTransitionStarted.AddListener(delegate { combatant.PlayAnimation("OnDeath"); });
         }
     }
 }

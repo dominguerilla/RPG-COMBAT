@@ -14,15 +14,10 @@ public class BattleTester : MonoBehaviour {
     NPCParty rightParty;
 
     BattleManager bManager;
-    SceneTransitioner transitioner;
     Combatant[] leftCombatants, rightCombatants;
 
     private void Awake() {
         bManager = GetComponent<BattleManager>();    
-    }
-
-    private void Start() {
-        transitioner = GetComponent<SceneTransitioner>();
     }
 
     public void StartBattle(){
