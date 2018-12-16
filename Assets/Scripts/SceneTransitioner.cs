@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 /// <summary>
 /// Executes the transition between the field and a battle.
@@ -11,12 +12,17 @@ public class SceneTransitioner : MonoBehaviour {
     
     public Transform scenePosition;
     public Image battleFadeImage;
+    public UnityEvent OnBattleStart;
     [SerializeField]
     float fadeSpeed = 1.0f;
 
     GameObject activeBattleScene;
     Camera battleCam, returnCam;
     Light battleLight, returnLight;
+
+    private void Awake() {
+        OnBattleStart = new UnityEvent();   
+    }
 
     public void CreateBattleScene(Combatant[] leftParty, Combatant[] rightParty, GameObject battleScene, Camera returnCam = null, Light returnLight = null){
         StartCoroutine(InitializeBattleScene(leftParty, rightParty, battleScene, returnCam, returnLight));
@@ -57,6 +63,8 @@ public class SceneTransitioner : MonoBehaviour {
 
         Transform[] rightPositions = GetPositions(rightPartyParent);
         SpawnParty(rightParty, rightPositions, rightPartyParent.transform);
+
+        OnBattleStart.Invoke();
         yield return null;
     }
 
@@ -127,11 +135,12 @@ public class SceneTransitioner : MonoBehaviour {
             if(i >= positions.Length){
                 break;
             }
-            GameObject.Instantiate<GameObject>(
+            GameObject newObj = GameObject.Instantiate<GameObject>(
                 party[i].GetData().GetModel(), 
                 positions[i].transform.position,
                 positions[i].transform.rotation,
                 parent );
+            party[i].SetGameObject(newObj);
         }
     }
 }

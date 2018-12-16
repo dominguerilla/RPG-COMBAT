@@ -13,24 +13,32 @@ public class BattleTester : MonoBehaviour {
     [SerializeField]
     NPCParty rightParty;
 
-    BattleManager fManager;
+    BattleManager bManager;
+    SceneTransitioner transitioner;
+    Combatant[] leftCombatants, rightCombatants;
 
     private void Awake() {
-        fManager = GetComponent<BattleManager>();    
+        bManager = GetComponent<BattleManager>();    
+    }
+
+    private void Start() {
+        transitioner = GetComponent<SceneTransitioner>();
     }
 
     public void StartBattle(){
-        Combatant[] leftCombatants = GenerateCombatants(leftParty);
+        leftCombatants = GenerateCombatants(leftParty);
         Debug.Log("Left party: " + leftCombatants.Length);
 
-        Combatant[] rightCombatants = GenerateCombatants(rightParty);
+        rightCombatants = GenerateCombatants(rightParty);
         Debug.Log("Right party: " + rightCombatants.Length);
 
-        fManager.StartBattle(leftCombatants, rightCombatants, battleScenePrefab);
+        bManager.StartBattle(leftCombatants, rightCombatants, battleScenePrefab);
     }
 
     public void EndBattle(){
-        fManager.EndBattle();
+        leftCombatants = null;
+        rightCombatants = null;
+        bManager.EndBattle();
     }
 
     Combatant[] GenerateCombatants(NPCParty party){
