@@ -11,7 +11,10 @@ using UnityEngine.Events;
 public class SceneTransitioner : MonoBehaviour {
     
     public Transform scenePosition;
-    public Image battleFadeImage;
+    [SerializeField]
+    Image battleStartFadeImage;
+    [SerializeField]
+    Image battleEndFadeImage;
     
     /// <summary>
     /// Called when the scene STARTS to fade in FROM black, during the transition from field to battle.
@@ -42,7 +45,7 @@ public class SceneTransitioner : MonoBehaviour {
     // TODO Make it so that it initializes a battle scene that already exists in the Scene.
     // That way, we don't have to instantiate a new one every battle
     IEnumerator InitializeBattleScene(Combatant[] leftParty, Combatant[] rightParty, GameObject battleScene, Camera returnCam = null, Light returnLight = null){
-        yield return StartCoroutine(FadeImage(1.0f));
+        yield return StartCoroutine(FadeImage(battleStartFadeImage, 1.0f));
         GameObject newScene = Instantiate(battleScene, scenePosition.position, scenePosition.rotation) as GameObject;
         activeBattleScene = newScene;
 
@@ -75,7 +78,7 @@ public class SceneTransitioner : MonoBehaviour {
         SpawnParty(rightParty, rightPositions, rightPartyParent.transform);
 
         BeginTransitionStarted.Invoke();
-        yield return StartCoroutine(FadeImage(0.0f));
+        yield return StartCoroutine(FadeImage(battleStartFadeImage, 0.0f));
     }
 
     public void DestroyBattleScene(){
@@ -85,7 +88,7 @@ public class SceneTransitioner : MonoBehaviour {
     IEnumerator TakeDownBattleScene(){
         EndTransitionStarted.Invoke();
         BeginTransitionStarted.RemoveAllListeners();
-        yield return StartCoroutine(FadeImage(1.0f));
+        yield return StartCoroutine(FadeImage(battleEndFadeImage, 1.0f));
         if(returnCam){
             returnCam.enabled = true;
             returnCam = null;
@@ -108,23 +111,23 @@ public class SceneTransitioner : MonoBehaviour {
         Destroy(activeBattleScene);
         activeBattleScene = null;
         EndTransitionStarted.RemoveAllListeners();
-        yield return StartCoroutine(FadeImage(0.0f));
+        yield return StartCoroutine(FadeImage(battleEndFadeImage, 0.0f));
     }
 
-    IEnumerator FadeImage(float alpha){
-        if(battleFadeImage != null){
-            if(battleFadeImage.color.a < alpha){
-                while(battleFadeImage.color.a < alpha){
-                    var tempColor = battleFadeImage.color;
+    IEnumerator FadeImage(Image image, float alpha){
+        if(image != null){
+            if(image.color.a < alpha){
+                while(image.color.a < alpha){
+                    var tempColor = image.color;
                     tempColor.a += Time.deltaTime * fadeSpeed;
-                    battleFadeImage.color = tempColor;
+                    image.color = tempColor;
                     yield return new WaitForEndOfFrame();
                 }
-            }else if(battleFadeImage.color.a > alpha){
-                while(battleFadeImage.color.a > alpha){
-                    var tempColor = battleFadeImage.color;
+            }else if(image.color.a > alpha){
+                while(image.color.a > alpha){
+                    var tempColor = image.color;
                     tempColor.a -= Time.deltaTime * fadeSpeed;
-                    battleFadeImage.color = tempColor;
+                    image.color = tempColor;
                     yield return new WaitForEndOfFrame();
                 }
 
