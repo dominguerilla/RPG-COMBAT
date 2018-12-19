@@ -11,10 +11,7 @@ using UnityEngine.Events;
 public class SceneTransitioner : MonoBehaviour {
     
     public Transform scenePosition;
-    [SerializeField]
-    Image battleStartFadeImage;
-    [SerializeField]
-    Image battleEndFadeImage;
+    BattleUI ui;
     
     /// <summary>
     /// Called when the scene STARTS to fade in FROM black, during the transition from field to battle.
@@ -26,9 +23,6 @@ public class SceneTransitioner : MonoBehaviour {
     /// </summary>
     public UnityEvent EndTransitionStarted;
 
-    [SerializeField]
-    float fadeSpeed = 1.0f;
-
     GameObject activeBattleScene;
     Camera battleCam, returnCam;
     Light battleLight, returnLight;
@@ -36,6 +30,7 @@ public class SceneTransitioner : MonoBehaviour {
     private void Awake() {
         BeginTransitionStarted = new UnityEvent();
         EndTransitionStarted = new UnityEvent();
+        ui = GetComponent<BattleUI>();
     }
 
     public void CreateBattleScene(Combatant[] leftParty, Combatant[] rightParty, GameObject battleScene, Camera returnCam = null, Light returnLight = null){
@@ -45,7 +40,7 @@ public class SceneTransitioner : MonoBehaviour {
     // TODO Make it so that it initializes a battle scene that already exists in the Scene.
     // That way, we don't have to instantiate a new one every battle
     IEnumerator InitializeBattleScene(Combatant[] leftParty, Combatant[] rightParty, GameObject battleScene, Camera returnCam = null, Light returnLight = null){
-        yield return StartCoroutine(FadeImage(battleStartFadeImage, 1.0f));
+        yield return StartCoroutine(ui.BattleStartFadeOut());
         GameObject newScene = Instantiate(battleScene, scenePosition.position, scenePosition.rotation) as GameObject;
         activeBattleScene = newScene;
 
@@ -78,7 +73,7 @@ public class SceneTransitioner : MonoBehaviour {
         SpawnParty(rightParty, rightPositions, rightPartyParent.transform);
 
         BeginTransitionStarted.Invoke();
-        yield return StartCoroutine(FadeImage(battleStartFadeImage, 0.0f));
+        yield return StartCoroutine(ui.BattleStartFadeIn());
     }
 
     public void DestroyBattleScene(){
@@ -88,7 +83,7 @@ public class SceneTransitioner : MonoBehaviour {
     IEnumerator TakeDownBattleScene(){
         EndTransitionStarted.Invoke();
         BeginTransitionStarted.RemoveAllListeners();
-        yield return StartCoroutine(FadeImage(battleEndFadeImage, 1.0f));
+        yield return StartCoroutine(ui.BattleEndFadeOut());
         if(returnCam){
             returnCam.enabled = true;
             returnCam = null;
@@ -111,28 +106,7 @@ public class SceneTransitioner : MonoBehaviour {
         Destroy(activeBattleScene);
         activeBattleScene = null;
         EndTransitionStarted.RemoveAllListeners();
-        yield return StartCoroutine(FadeImage(battleEndFadeImage, 0.0f));
-    }
-
-    IEnumerator FadeImage(Image image, float alpha){
-        if(image != null){
-            if(image.color.a < alpha){
-                while(image.color.a < alpha){
-                    var tempColor = image.color;
-                    tempColor.a += Time.deltaTime * fadeSpeed;
-                    image.color = tempColor;
-                    yield return new WaitForEndOfFrame();
-                }
-            }else if(image.color.a > alpha){
-                while(image.color.a > alpha){
-                    var tempColor = image.color;
-                    tempColor.a -= Time.deltaTime * fadeSpeed;
-                    image.color = tempColor;
-                    yield return new WaitForEndOfFrame();
-                }
-
-            }
-        }
+        yield return StartCoroutine(ui.BattleEndFadeIn());
     }
 
     Transform[] GetPositions(GameObject parentObj){

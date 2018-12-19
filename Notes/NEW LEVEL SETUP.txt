@@ -1,0 +1,20 @@
+# Setting up a new level
+
+1. First, get the GameManager set up
+	- there should be a prefab with the required components
+		- field manager
+		- battle manager
+		- scene transitioner
+		- battle UI component
+2. Next, get the Battle UI prefab in the scene
+3. Set up the GM's Scene Transitioner's fields
+	- set an empty transform as the Scene Position; this is where the battle scene will spawn
+4. Set up the Battle UI component
+	- set the battle start/end fade images to the images in the BattleUI prefab
+
+
+## Battle Tester Setup
+Add the BattleTester component to the GameManager
+1. Enable Debug Mode
+2. Set the battle scene prefab
+3. Set the parties

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FieldManager : MonoBehaviour {
     
-    // TODO might not need battleScenePrefab here
+    /// <summary>
+    /// Only needed if FieldManager.StartBattle() is being called directly
+    /// </summary>
     public GameObject battleScenePrefab;
 
     public bool DebugMode;
