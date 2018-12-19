@@ -72,6 +72,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenePosition: {fileID: 0}
+  OnBattleStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnBattleEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   BeginTransitionStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -93,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833525d90aed0f849b9d01d1a5e7b58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commandUI: {fileID: 0}
   fadeSpeed: 0.85
   battleStartFadeImage: {fileID: 0}
   battleEndFadeImage: {fileID: 0}

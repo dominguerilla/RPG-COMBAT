@@ -14,13 +14,29 @@ public class SceneTransitioner : MonoBehaviour {
     BattleUI ui;
     
     /// <summary>
-    /// Called when the scene STARTS to fade in FROM black, during the transition from field to battle.
+    /// Called whenever a battle starts.
     /// </summary>
+    [HideInInspector]
+    public UnityEvent OnBattleStart;
+
+    /// <summary>
+    /// Called whenever a battle ends.
+    /// </summary>
+    [HideInInspector]
+    public UnityEvent OnBattleEnd;
+
+    /// <summary>
+    /// Called when the scene STARTS to fade in FROM black, during the transition from field to battle.
+    /// All listeners are cleared after a battle has ended.
+    /// </summary>
+    [HideInInspector]
     public UnityEvent BeginTransitionStarted;
 
     /// <summary>
     /// Called when the scene STARTS to fade TO black, during the transition from battle to field.
+    /// All listeners are cleared after a battle has ended.
     /// </summary>
+    [HideInInspector]
     public UnityEvent EndTransitionStarted;
 
     GameObject activeBattleScene;
@@ -28,8 +44,11 @@ public class SceneTransitioner : MonoBehaviour {
     Light battleLight, returnLight;
 
     private void Awake() {
+        OnBattleStart = new UnityEvent();
+        OnBattleEnd = new UnityEvent();
         BeginTransitionStarted = new UnityEvent();
         EndTransitionStarted = new UnityEvent();
+       
         ui = GetComponent<BattleUI>();
     }
 
@@ -74,6 +93,7 @@ public class SceneTransitioner : MonoBehaviour {
 
         BeginTransitionStarted.Invoke();
         yield return StartCoroutine(ui.BattleStartFadeIn());
+        OnBattleStart.Invoke();
     }
 
     public void DestroyBattleScene(){
@@ -81,8 +101,11 @@ public class SceneTransitioner : MonoBehaviour {
     }
 
     IEnumerator TakeDownBattleScene(){
+        OnBattleEnd.Invoke();
         EndTransitionStarted.Invoke();
+
         BeginTransitionStarted.RemoveAllListeners();
+
         yield return StartCoroutine(ui.BattleEndFadeOut());
         if(returnCam){
             returnCam.enabled = true;
@@ -106,7 +129,7 @@ public class SceneTransitioner : MonoBehaviour {
         Destroy(activeBattleScene);
         activeBattleScene = null;
         EndTransitionStarted.RemoveAllListeners();
-        yield return StartCoroutine(ui.BattleEndFadeIn());
+        yield return StartCoroutine(ui.BattleEndFadeIn());        
     }
 
     Transform[] GetPositions(GameObject parentObj){
