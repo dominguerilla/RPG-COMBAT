@@ -2,15 +2,7 @@ COMBAT SYSTEM
 =============
 
 - Turn based
-- Player is directing a party of four (five?) to fight directly
-- Combat takes place between enemy and adventurer party
-	- adventurer party consists of NPC adventurers and the player, who is not directly involved in combat
-	- each party has a front line and a back line
-	- can be any number of party members in front line
-		- needs to have at least one--if EVERYONE is on back line, then it's the front line
-	- skills and attacks have positional requirements
-		- some attacks will fail if used in the wrong position, some have DIFFERENT effects depending on where the user is position when it's cast
-
+- Player is a member of a party of four (five) against any enemies they come across
 
 
 COMBAT FLOW
@@ -19,38 +11,55 @@ ORDER PHASE -> ATTACK PHASE -> ORDER PHASE -> ATTACK PHASE -> ...
 
 Order Phase:
 ------------
-	- player gives orders to the party to decide what attack/move each member will do
+	- player gives orders to each party member, deciding what they will do during the attack phase
 		- do normal attack, cast skill, use item, defend, attempt escape
+	- no actions are carried out until the attack phase!
 	- once all party members have orders and the player has decided on their action, order phase is done
 
 Attack Phase:
 -------------
 	- all combatants will perform their actions
 	- turn order is based on initiative stat of each combatant
-	- if, through the actions of either party, all members of a party are in the back line by the end of the Attack Phase, that line becomes the FRONT line
 	- ** The player has the opportunity to evade/block attacks that target them **
 
 ACTIONS
 =======
-The actions that a combatant can perform are:
+
+ACTION TARGETING
+----------------
+Any action that requires a party member to target another combatant can also target a specific body part
+	- body parts can include HEAD, CHEST, ARMS, LEGS
+		- more/less for non-humanoid enemies?
+For instance, a knight performing a standard attack with a mace has a few choices
+	1. she could target the enemy's head, which deals more damage + has a chance to stun, but is less likely to hit
+	2. she could target the enemy's legs, which has a chance of slowing/crippling the opponent
+	3. she could target the enemy's arms, which could decrease their damage output for a few turns
+	4. she could target the enemy's chest, which is the biggest target (and thus easier to hit) but is more armored
+
+Similarly, a healer casting a standard HEAL spell has choices to make:
+	1. he could target the ally's chest, which heals the most and has a chance to clear poison
+	2. he could target the ally's head, which has a chance to clear stun/charmed/fear statuses
+	3. he could target the ally's arms, which has a chance of removing any damage/defense debuffs
+	4. he could target the ally's legs, which has a chance of removing any speed/evasion debuffs
+
+AVAILABLE ACTIONS
+-----------------
+This is a list of actions that any combatant can take
 	- ATTACK
-		- combatant attacks with equipped weapon
+		- combatant attacks with equipped weapon on the specified target and body part
 	- DEFEND
-		- combatant takes reduced damage + is unable to be moved (unless special skill/item says otherwise)
+		- combatant takes reduced damage
 	- SKILL
-		- combatant uses MP to perform a skill, which can deal damage, cast buffs/debuffs, move party/enemy members around
-	- MOVE
-		- moves to a different party line.
-		- after moving, combatant gains increased resistance to forced line movement until the end of the attack phase 
-		- when moving from back to front, combatant gains increased defense until the end of attack phase
-		- when moving from front to back, combatant gains increased evasion until the end of attack phase
+		- combatant uses MP to perform a skill, which can deal damage, cast buffs/debuffs, etc
+		- skills are class specific
 	- ITEM
 		- combatant will use one of the items in their inventory
 		- adventurers have limited inventory space, and can only use what items they have inside it. The player must choose the RESUPPLY action to transfer items during combat, or can replenish their inventories freely outside of it.
 	- ESCAPE
 		- combatant will attempt to escape from fight. If successful, all party members escape combat. 
 
-Player Specific Commands:
+Player Specific Actions:
+------------------------
 	- Analyze:
 		- target: one enemy
 		- records information about targeted enemy; displays health, weaknesses, resistances

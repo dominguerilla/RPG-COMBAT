@@ -21,3 +21,10 @@ Endurance
 	- maximum health + damage resistance
 Luck
 	- critical chance + evasion
+
+Character Anatomy
+-----------------
+Different races have different Anatomies. Each Anatomy consists of one or more body parts (HEAD, CHEST, ARMS, LEGS, TAIL, etc.). Each body part has different resistances/weaknesses, and they vary based on the species/breed of combatant. Attacking a specific body part of a Race could also induce additional status effects.
+	- ex: the arms of 'Firefist Trolls' (totally made up race) may be very resistant to fire attacks, but susceptible to ice/water attacks, whereas the arms of 'IceBicep Ogres' (B-Ice-p Ogres?) would be the opposite.
+	- ex: Slimes would only have a 'Body' and 'Core' body part; directly attacking a Slime's core would be the fastest way to defeat it.
+	- ex: Earth attacks on a Beholder's main Eye could Blind it for a turn, but it will also Enrage it

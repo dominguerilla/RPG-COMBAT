@@ -1,5 +1,7 @@
 ADVENTURER CLASSES
 ==================
+TODO: rewrite for the new 'Action Targeting' battle system
+
 
 Fighter
 -------
