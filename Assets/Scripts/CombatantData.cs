@@ -9,6 +9,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New CombatantData", menuName = "Combatant Data", order = 51)]
 public class CombatantData : ScriptableObject {
 
+    [System.Serializable]
+    public class Limb{
+        public string name;
+        public float PHYS_DEF;
+        public float MAG_DEF;
+    }
+
     [SerializeField]
     GameObject modelPrefab;
 
@@ -30,6 +37,13 @@ public class CombatantData : ScriptableObject {
     int ATK;
     [SerializeField]
     int DEF;
+    
+    [SerializeField]
+    Limb[] ANATOMY;
+    
+    public Limb[] GetAnatomy(){
+        return ANATOMY;
+    }
 
     public GameObject GetModel(){
         return modelPrefab;

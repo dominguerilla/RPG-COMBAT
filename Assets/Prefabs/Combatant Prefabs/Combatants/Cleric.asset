@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a222b717e75e747928e8935f116bf3, type: 3}
   m_Name: Cleric
   m_EditorClassIdentifier: 
+  modelPrefab: {fileID: 0}
   STR: 5
   INT: 8
   DEX: 6
@@ -20,3 +21,16 @@ MonoBehaviour:
   MP: 80
   ATK: 50
   DEF: 50
+  ANATOMY:
+  - name: HEAD
+    PHYS_DEF: 1
+    MAG_DEF: 1
+  - name: TORSO
+    PHYS_DEF: 1
+    MAG_DEF: 1
+  - name: ARMS
+    PHYS_DEF: 1
+    MAG_DEF: 1
+  - name: LEGS
+    PHYS_DEF: 1
+    MAG_DEF: 1

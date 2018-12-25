@@ -22,3 +22,10 @@ MonoBehaviour:
   MP: 0
   ATK: 40
   DEF: 30
+  ANATOMY:
+  - name: CORE
+    PHYS_DEF: 1
+    MAG_DEF: 1
+  - name: BODY
+    PHYS_DEF: 1
+    MAG_DEF: 1
