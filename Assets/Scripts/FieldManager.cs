@@ -31,7 +31,7 @@ public class FieldManager : MonoBehaviour {
         int count = 5;
         Combatant[] party = new Combatant[count];
         for (int i = 0; i < count; i++){
-            Combatant combatant = new Combatant(i, null);
+            Combatant combatant = new Combatant(null);
             party[i] = combatant;
         }
         Debug.Log("Left party: " + party.Length);
@@ -42,7 +42,7 @@ public class FieldManager : MonoBehaviour {
         int count = 4;
         Combatant[] party = new Combatant[count];
         for (int i = 0; i < count; i++){
-            Combatant combatant = new Combatant(i, null);
+            Combatant combatant = new Combatant(null);
             party[i] = combatant;
         }
         Debug.Log("Right party: " + party.Length);

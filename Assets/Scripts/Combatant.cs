@@ -17,7 +17,6 @@ using UnityEngine;
 public class Combatant {
     
     CombatantData combatantData;
-    int linePosition;
     string status;
     int hp;
     int mp;
@@ -27,8 +26,7 @@ public class Combatant {
     GameObject combatantGO;
     Animator anim;
 
-    public Combatant(int linePosition, CombatantData combatantData){
-        this.linePosition = linePosition;
+    public Combatant(CombatantData combatantData){
         this.combatantData = combatantData;
     }
 

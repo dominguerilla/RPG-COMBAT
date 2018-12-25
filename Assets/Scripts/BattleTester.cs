@@ -41,7 +41,7 @@ public class BattleTester : MonoBehaviour {
         Combatant[] combatants = new Combatant[data.Length];
         for (int i = 0; i < combatants.Length; i++){
 
-            Combatant combatant = new Combatant(i, data[i]);
+            Combatant combatant = new Combatant(data[i]);
             combatants[i] = combatant;
         }
         return combatants;
