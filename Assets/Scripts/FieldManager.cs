@@ -18,9 +18,7 @@ public class FieldManager : MonoBehaviour {
 	}
     
     public void StartBattle(){
-        Combatant[] left = GetLeftParty();
-        Combatant[] right = GetRightParty();
-        bm.StartBattle(left, right, battleScenePrefab);
+        throw new System.NotImplementedException();
     }
     
     public void EndBattle(){

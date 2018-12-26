@@ -11,11 +11,13 @@ public class BattleManager : MonoBehaviour {
         transitioner = GetComponent<SceneTransitioner>();
     }
 
-    public void StartBattle(Combatant[] leftParty, Combatant[] rightParty, GameObject battleScenePrefab){
+    public void StartBattle(NPCParty leftParty, NPCParty rightParty, GameObject battleScenePrefab){
         if(!inBattle){
             inBattle = true;
+            Combatant[] lCombatants = GenerateCombatants(leftParty);
+            Combatant[] rCombatants = GenerateCombatants(rightParty);
             Debug.Log("Battle started!");
-            transitioner.CreateBattleScene(leftParty, rightParty, battleScenePrefab);
+            transitioner.CreateBattleScene(lCombatants, rCombatants, battleScenePrefab);
         }
     }
 
@@ -25,6 +27,17 @@ public class BattleManager : MonoBehaviour {
             Debug.Log("Battle ended!");
             transitioner.DestroyBattleScene();
         }
+    }
+
+    Combatant[] GenerateCombatants(NPCParty party){
+        CombatantData[] data = party.GetData();
+        Combatant[] combatants = new Combatant[data.Length];
+        for (int i = 0; i < combatants.Length; i++){
+
+            Combatant combatant = new Combatant(data[i]);
+            combatants[i] = combatant;
+        }
+        return combatants;
     }
 
     public bool InBattle(){
