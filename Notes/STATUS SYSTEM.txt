@@ -20,7 +20,7 @@ Dexterity
 Endurance
 	- maximum health + damage resistance
 Luck
-	- critical chance + evasion
+	- used in all calculations?
 
 Character Anatomy
 -----------------
@@ -28,3 +28,34 @@ Different races have different Anatomies. Each Anatomy consists of one or more b
 	- ex: the arms of 'Firefist Trolls' (totally made up race) may be very resistant to fire attacks, but susceptible to ice/water attacks, whereas the arms of 'IceBicep Ogres' (B-Ice-p Ogres?) would be the opposite.
 	- ex: Slimes would only have a 'Body' and 'Core' body part; directly attacking a Slime's core would be the fastest way to defeat it.
 	- ex: Earth attacks on a Beholder's main Eye could Blind it for a turn, but it will also Enrage it
+
+DAMAGE TYPES
+------------
+	- BLUNT
+	- SLASH
+	- STAB
+
+	- FIRE
+	- WATER
+	- ICE
+	- WIND
+	- EARTH
+	- ELECTRIC
+	- PSYCHIC
+	- LIGHT
+	- DARK
+
+Possible Status Effects
+-----------------------
+	- POISON
+	- STUNNED
+	- BURNING
+	- SILENCED
+	- SLEEPING
+	- BLINDED
+	- ENRAGED
+	- CHARMED
+	- CONFUSED
+	- [DAMAGE TYPE] ATTACK UP/DOWN (percentage based)
+	- [DAMAGE TYPE] DEFENSE UP/DOWN (percentage based)
+	- [STAT] UP/DOWN (additive)
