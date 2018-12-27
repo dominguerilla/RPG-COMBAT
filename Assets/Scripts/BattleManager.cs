@@ -16,6 +16,8 @@ public class BattleManager : MonoBehaviour {
             inBattle = true;
             Combatant[] lCombatants = GenerateCombatants(leftParty);
             Combatant[] rCombatants = GenerateCombatants(rightParty);
+            // TODO calculate combatant starting bonuses (from equipment or skills)
+
             Debug.Log("Battle started!");
             transitioner.CreateBattleScene(lCombatants, rCombatants, battleScenePrefab);
         }
