@@ -18,9 +18,50 @@ public class Combatant {
     
     CombatantData combatantData;
     string status;
-    int hp;
-    int mp;
-    string buffs;
+    Effect[] currentEffects;
+
+    #region STATS
+    public enum STATS{
+        HP,
+        MP,
+        ACCURACY,
+        SPEED,
+        CRIT,
+        PHYS_ATK,
+        PHYS_DEF,
+        MAG_ATK,
+        MAG_DEF,
+        FIRE_ATK,
+        FIRE_DEF,
+        WATER_ATK,
+        WATER_DEF,
+        ICE_ATK,
+        ICE_DEF,
+        WIND_ATK,
+        WIND_DEF,
+        EARTH_ATK,
+        EARTH_DEF,
+        ELECTRIC_ATK,
+        ELECTRIC_DEF,
+        LIGHT_ATK,
+        LIGHT_DEF,
+        DARK_ATK,
+        DARK_DEF,
+    }
+    float HP;
+    float MP;
+    float ACCURACY, SPEED, CRIT;
+    float PHYS_ATK, PHYS_DEF;
+    float MAG_ATK, MAG_DEF;
+    float FIRE_ATK, FIRE_DEF;
+    float WATER_ATK, WATER_DEF;
+    float ICE_ATK, ICE_DEF;
+    float WIND_ATK, WIND_DEF;
+    float EARTH_ATK, EARTH_DEF;
+    float ELECTRIC_ATK, ELECTRIC_DEF;
+    float LIGHT_ATK, LIGHT_DEF;
+    float DARK_ATK, DARK_DEF;
+    #endregion
 
     // fields relating to GameObject and components
     GameObject combatantGO;

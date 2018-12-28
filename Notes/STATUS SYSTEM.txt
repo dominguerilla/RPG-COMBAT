@@ -8,9 +8,9 @@ Mana/Stamina (depending on class -- interchangeable)
 Level
 
 
-Character Stats
----------------
-Note that skills can scale off of any of these stats; classes just tend to have skills that benefit from the same group of stats
+Innate Character Stats
+----------------------
+These are stats that are 'innate' to a character
 Strength
 	- certain physical skills + physical damage resistance
 Intelligence
@@ -21,6 +21,24 @@ Endurance
 	- maximum health + damage resistance
 Luck
 	- used in all calculations?
+
+Character Combat Stats
+----------------------
+These are stats used in combat that are based off of Innate Stats and equipment/buffs
+	- ACCURACY
+	- SPEED
+	- PHYS ATK/DEF
+	- MAG ATK/DEF
+	- FIRE ATK/DEF
+	- WATER ATK/DEF
+	- ICE ATK/DEF
+	- WIND ATK/DEF
+	- EARTH ATK/DEF
+	- ELECTRIC ATK/DEF
+	- PSYCHIC ATK/DEF
+	- LIGHT ATK/DEF
+	- DARK ATK/DEF
+	- CRIT
 
 Character Anatomy
 -----------------
