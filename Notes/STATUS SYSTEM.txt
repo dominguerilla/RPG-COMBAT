@@ -29,8 +29,11 @@ Different races have different Anatomies. Each Anatomy consists of one or more b
 	- ex: Slimes would only have a 'Body' and 'Core' body part; directly attacking a Slime's core would be the fastest way to defeat it.
 	- ex: Earth attacks on a Beholder's main Eye could Blind it for a turn, but it will also Enrage it
 
-DAMAGE TYPES
-------------
+DAMAGE
+------
+Damage has a MAGNITUDE and a TYPE. MAGNITUDE should be calculated by the weapon/skill used based on the COMBATANT's current battle stats.
+The DAMAGE is passed to the target combatant along with a LIMB target, and the target(s) will calculate how much actual damage they take based on the target's current resistances/stats, as well as any special effects incurred from the DAMAGE.
+TYPES:
 	- BLUNT
 	- SLASH
 	- STAB
@@ -47,15 +50,30 @@ DAMAGE TYPES
 
 Possible Status Effects
 -----------------------
+	- WET
+		- FIRE DEF UP, ELECTRIC DEF DOWN
+	- FROZEN
+		- STUNNED, FIRE DEF UP
 	- POISON
+		- -HP for X turns
 	- STUNNED
+		- Unable to ACT for X turns
+	- SLOWED
+		- SPEED DOWN
 	- BURNING
+		- FIRE DMG for X turns
 	- SILENCED
+		- Unable to cast SKILLS
 	- SLEEPING
+		- STUNNED, +HP for X turns
 	- BLINDED
+		- ACCURACY DOWN
 	- ENRAGED
+		- PHYS DMG UP, SILENCED
 	- CHARMED
+		- automatically targets allies or self
 	- CONFUSED
+		- chance to disobey ORDER
 	- [DAMAGE TYPE] ATTACK UP/DOWN (percentage based)
 	- [DAMAGE TYPE] DEFENSE UP/DOWN (percentage based)
 	- [STAT] UP/DOWN (additive)
