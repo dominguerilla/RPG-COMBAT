@@ -19,24 +19,16 @@ public class CombatantData : ScriptableObject {
     [SerializeField]
     GameObject modelPrefab;
 
-    [SerializeField]
-    int STR;
-    [SerializeField]
-    int INT;
-    [SerializeField]
-    int DEX;
-    [SerializeField]
-    int END;
-    [SerializeField]
-    int LCK;
-    [SerializeField]
-    int HP;
-    [SerializeField]
-    int MP;
-    [SerializeField]
-    int ATK;
-    [SerializeField]
-    int DEF;
+    public int LVL;
+    public int STR;
+    public int INT;
+    public int DEX;
+    public int END;
+    public int LCK;
+    public int HP;
+    public int MP;
+    public int ATK;
+    public int DEF;
     
     [SerializeField]
     Limb[] ANATOMY;

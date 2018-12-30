@@ -40,5 +40,7 @@ public class Damage {
     public TIMING timing;
     public TYPE type;
     public MAGNITUDE magnitude;
+
+    [Tooltip("Used only if MAGNITUDE is set to FLAT.")]
     public float flatDamage;
 }
