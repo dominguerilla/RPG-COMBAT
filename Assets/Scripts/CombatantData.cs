@@ -12,25 +12,33 @@ public class CombatantData : ScriptableObject {
     [System.Serializable]
     public class Limb{
         public string name;
-        public float PHYS_DEF;
-        public float MAG_DEF;
+
+        [Tooltip("Uses the combatant's base stats by default.")]
+        public List<StatValue> limbStats;
     }
 
     [SerializeField]
     GameObject modelPrefab;
 
-    public int LVL;
-    public int STR;
-    public int INT;
-    public int DEX;
-    public int END;
-    public int LCK;
+    [SerializeField]
+    List<StatValue> baseStats;
+
+    float defaultStatValue = 10.0f;
+
+    public float GetStat(Stats.STAT stat){
+        // TODO: probably better way to do this...
+        if(baseStats.Exists(x => x.Stat == stat)){
+            return baseStats.Find(x => x.Stat == stat).Value;
+        }else{
+            return defaultStatValue;
+        }
+    }
     
     [SerializeField]
-    Limb[] ANATOMY;
+    Limb[] anatomy;
     
     public Limb[] GetAnatomy(){
-        return ANATOMY;
+        return anatomy;
     }
 
     public GameObject GetModel(){

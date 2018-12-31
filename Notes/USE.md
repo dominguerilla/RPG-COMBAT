@@ -8,6 +8,8 @@ The implementer of the system is referred to as the 'designer'.
 ## Stats
 All fighters in the battle system have stats that the designer specifies. However, the fighter has two values for each stat: intrinsic and extrinsic. *Intrinsic* stat values are the base values that a fighter has. *Extrinsic* stat values are calculated from its intrinsic values, equipment bonuses, and any buffs/debuffs that the fighter is affected by.
 
+### Usage
+Define the possible stats that every fighter must have in the enum Stats.STAT. Examples include STR, DEX, INT, etc...
 
 ## CombatantData 
 The CombatantData (CD) ScriptableObject gives details on a fighter, and all fighters should have a CD asset of their own. Each CD contains:
