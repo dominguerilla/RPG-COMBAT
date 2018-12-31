@@ -23,5 +23,5 @@ public class StatBuff {
 
     public MAGNITUDE Magnitude;
     public DIRECTION Direction;
-    public StatCalculator.STATS Stat;
+    public string Stat;
 }

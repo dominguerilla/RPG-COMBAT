@@ -25,13 +25,9 @@ public class Combatant {
     // fields relating to GameObject and components
     GameObject combatantGO;
     Animator anim;
-    StatCalculator StatCalc;
 
     public Combatant(CombatantData combatantData){
         this.combatantData = combatantData;
-        this.StatCalc = new StatCalculator(this); //TODO something smells here.....
-
-        StatCalc.CalculateStats();
     }
 
 

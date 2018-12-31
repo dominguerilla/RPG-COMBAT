@@ -25,10 +25,6 @@ public class CombatantData : ScriptableObject {
     public int DEX;
     public int END;
     public int LCK;
-    public int HP;
-    public int MP;
-    public int ATK;
-    public int DEF;
     
     [SerializeField]
     Limb[] ANATOMY;

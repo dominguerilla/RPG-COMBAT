@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatCalculator {
+/// <summary>
+/// The class the implementer will inherit from to specify and calculate stats.
+/// All combatants will have these stats, and it will be up to the implementer
+/// to decide what stats to use and how to calculate them.
+/// </summary>
+public abstract class StatCalculator {
 
+    public string[] STATS;
+    public abstract float CalculateStat(string stat);
+    /*
     public enum STATS{
         HP,
         MP,
@@ -31,26 +39,8 @@ public class StatCalculator {
         DARK_ATK,
         DARK_DEF,
     }
-    Dictionary<StatCalculator.STATS, float> stats;
-
-    Combatant combatant;
-    CombatantData data; //TODO something smells here...
-
-    public StatCalculator(Combatant combatant) {
-        this.combatant = combatant;
-        this.data = combatant.GetData();
-        stats = new Dictionary<StatCalculator.STATS, float>();
-    }
-
-    public void CalculateStats() {
-        Debug.Log("Combatant " + combatant.GetData().name + " stats");
-        foreach(StatCalculator.STATS stat in System.Enum.GetValues(typeof(StatCalculator.STATS))){
-            this.stats.Add(stat, this.CalculateStat(stat));
-            Debug.Log(stat.ToString() + ": " + this.stats[stat]);
-        }
-    }
-
-    public float CalculateStat(STATS stat) {
+    */
+    /*    
         switch(stat) {
             case STATS.HP:
                 return (.25f * this.data.LVL) + (.5f * this.data.END);
@@ -101,6 +91,5 @@ public class StatCalculator {
             default:
                 return 0;
         }
-        
-    }
+        */
 }
