@@ -1,9 +1,6 @@
-# Combatant RPG Battle System
---intro here--
-All participants in the Combatant RPG Battle System are referred to as 'fighters'.
+# LIMBS Battle System
+All participants in the LIBMS Battle System are referred to as 'fighters'.
 The implementer of the system is referred to as the 'designer'.
-
-## Installation
 
 ## Stats
 All fighters in the battle system have stats that the designer specifies. However, the fighter has two values for each stat: intrinsic and extrinsic. *Intrinsic* stat values are the base values that a fighter has. *Extrinsic* stat values are calculated from its intrinsic values, equipment bonuses, and any buffs/debuffs that the fighter is affected by.

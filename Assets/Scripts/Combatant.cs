@@ -52,17 +52,4 @@ public class Combatant {
         this.combatantGO = GO;
     }
 
-    public GameObject GetGameObject() {
-        return this.combatantGO;
-    }
-
-    public void SetStatus(string status) {
-        this.status = status;
-    }
-
-    public string GetStatus() {
-        return status;
-    }
-
-    
 }
