@@ -10,7 +10,7 @@ using UnityEngine;
 public abstract class StatCalculator {
 
     public string[] STATS;
-    public abstract float CalculateStat(string stat);
+    public abstract float CalculateStat(Combatant combatant, Stats.STAT stat);
     /*    
         switch(stat) {
             case STATS.HP:
