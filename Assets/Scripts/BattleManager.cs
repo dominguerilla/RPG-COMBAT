@@ -6,6 +6,7 @@ public class BattleManager : MonoBehaviour {
     
     SceneTransitioner transitioner;
     bool inBattle;
+    Combatant[] lCombatants, rCombatants;
 
     private void Awake() {
         transitioner = GetComponent<SceneTransitioner>();
@@ -14,9 +15,8 @@ public class BattleManager : MonoBehaviour {
     public void StartBattle(NPCParty leftParty, NPCParty rightParty, GameObject battleScenePrefab){
         if(!inBattle){
             inBattle = true;
-            Combatant[] lCombatants = GenerateCombatants(leftParty);
-            Combatant[] rCombatants = GenerateCombatants(rightParty);
-            // TODO calculate combatant starting bonuses (from equipment or skills)
+            lCombatants = GenerateCombatants(leftParty);
+            rCombatants = GenerateCombatants(rightParty);
 
             Debug.Log("Battle started!");
             transitioner.CreateBattleScene(lCombatants, rCombatants, battleScenePrefab);
@@ -28,6 +28,8 @@ public class BattleManager : MonoBehaviour {
             inBattle = false;
             Debug.Log("Battle ended!");
             transitioner.DestroyBattleScene();
+            lCombatants = null;
+            rCombatants = null;
         }
     }
 
@@ -35,14 +37,10 @@ public class BattleManager : MonoBehaviour {
         CombatantData[] data = party.GetData();
         Combatant[] combatants = new Combatant[data.Length];
         for (int i = 0; i < combatants.Length; i++){
-
+            
             Combatant combatant = new Combatant(data[i]);
             combatants[i] = combatant;
         }
         return combatants;
-    }
-
-    public bool InBattle(){
-        return inBattle;
     }
 }
