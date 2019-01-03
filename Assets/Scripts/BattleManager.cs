@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Uses Singleton pattern.
+/// </summary>
 public class BattleManager : MonoBehaviour {
     
+    private static BattleManager _instance;
+    public static BattleManager Instance { get { return _instance; } }
+
     SceneTransitioner transitioner;
     bool inBattle;
     Combatant[] lCombatants, rCombatants;
 
     private void Awake() {
+        if(_instance != null && _instance != this) {
+            Destroy(this);
+        }else {
+            _instance = this;
+        }
+
         transitioner = GetComponent<SceneTransitioner>();
     }
 
