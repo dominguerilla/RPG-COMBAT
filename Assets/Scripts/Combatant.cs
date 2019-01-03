@@ -25,6 +25,7 @@ public class Combatant {
     // fields relating to GameObject and components
     GameObject combatantGO;
     Animator anim;
+    bool isAlive = true;
 
     public Combatant(CombatantData combatantData){
         this.combatantData = combatantData;
@@ -50,6 +51,10 @@ public class Combatant {
 
     public void SetGameObject(GameObject GO) {
         this.combatantGO = GO;
+    }
+
+    public bool IsAlive() {
+        return isAlive;
     }
 
 }

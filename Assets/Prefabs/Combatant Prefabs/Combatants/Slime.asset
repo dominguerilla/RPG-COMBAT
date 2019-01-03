@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelPrefab: {fileID: 1702266177381236, guid: 123c07441b6e5f141908df18589a24fe,
     type: 2}
+  LVL: 10
   STR: 2
   INT: 1
   DEX: 2

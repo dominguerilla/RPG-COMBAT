@@ -5,7 +5,10 @@ using UnityEngine;
 /// <summary>
 /// Base class for attacks made with equipped weapons.
 /// </summary>
-public class BasicAttack : Action {
+[CreateAssetMenu(fileName = "New BasicAttack", menuName = "Basic Attack", order = 51)]
+public class BasicAttack : ActionDefinition {
+
+    public Damage damage;
 
     public override void Execute(Combatant[] actorParty, Combatant[] enemyParty, Combatant actor, Combatant[] targets) {
         
