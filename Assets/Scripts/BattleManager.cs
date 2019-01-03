@@ -55,4 +55,12 @@ public class BattleManager : MonoBehaviour {
         }
         return combatants;
     }
+
+    public Combatant[] GetLeftCombatants() {
+        return this.lCombatants;
+    }
+
+    public Combatant[] GetRightCombatants() {
+        return this.rCombatants;
+    }
 }

@@ -4,12 +4,6 @@ using UnityEngine;
 
 /// <summary>
 /// Defines an Action that a combatant performs during a turn.
-/// When Actions are performed, all buffs should have already been applied to all characters.
-/// 
-/// Three phases of selecting an Action:
-/// 1. Select an actor
-/// 2. Select an Action
-/// 3. Select a target
 /// </summary>
 public abstract class ActionDefinition : ScriptableObject{
     
@@ -45,8 +39,7 @@ public abstract class ActionDefinition : ScriptableObject{
     /// mana-based skills.
     /// Called at the beginning of the 'Order' phase.
     /// </summary>
-    public virtual bool CanBeCast(Combatant[] actorParty, Combatant[] enemyParty,
-                                    Combatant actor){
+    public virtual bool CanBeCast(Combatant actor, Combatant[] actorParty = null, Combatant[] enemyParty = null){
         if(actor.IsAlive()) {
             return true;
         }
@@ -58,8 +51,7 @@ public abstract class ActionDefinition : ScriptableObject{
     /// For example, perhaps a 'Sleep Kill' skill could only be performed on a sleeping target.
     /// Called at the start of the 'Select Target' phase of Action queuing.
     /// </summary>
-    public virtual bool CanTarget(Combatant[] actorParty, Combatant[] enemyParty,
-                                    Combatant actor, Combatant target){
+    public virtual bool CanTarget(Combatant actor, Combatant target, Combatant[] actorParty = null, Combatant[] enemyParty = null){
         if(target.IsAlive()) {
             return true;
         }
