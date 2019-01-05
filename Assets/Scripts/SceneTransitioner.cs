@@ -40,7 +40,6 @@ public class SceneTransitioner : MonoBehaviour {
     public UnityEvent EndTransitionStarted;
 
     GameObject activeBattleScene;
-    Camera battleCam, returnCam;
     Light battleLight, returnLight;
 
     private void Awake() {
@@ -67,12 +66,8 @@ public class SceneTransitioner : MonoBehaviour {
         GameObject rightPartyParent = newScene.transform.Find("RightParty").gameObject;
         
         // Initialize camera
-        this.battleCam = newScene.GetComponentInChildren<Camera>();
-        this.battleCam.enabled = true;
-        this.returnCam = returnCam;
-        if(this.returnCam){
-            this.returnCam.enabled = false;
-        }
+        Camera battleCam = newScene.GetComponentInChildren<Camera>();
+        CameraController.Instance.SetActiveCamera(battleCam);
 
         // Initialize lights
         // Assumes there's only one light in battleScene, and one return light
@@ -107,25 +102,17 @@ public class SceneTransitioner : MonoBehaviour {
         BeginTransitionStarted.RemoveAllListeners();
 
         yield return StartCoroutine(ui.BattleEndFadeOut());
-        if(returnCam){
-            returnCam.enabled = true;
-            returnCam = null;
-        }
         if(returnLight){
             returnLight.enabled = true;
             returnLight = null;
-        }
-
-        if(battleCam){
-            battleCam.enabled = false;
-            battleCam = null;
         }
 
         if(battleLight){
             battleLight.enabled = false;
             battleLight = null;
         }
-
+        
+        CameraController.Instance.ResetActiveCamera();
         Destroy(activeBattleScene);
         activeBattleScene = null;
         EndTransitionStarted.RemoveAllListeners();
