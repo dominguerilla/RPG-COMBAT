@@ -50,7 +50,7 @@ public class Action {
     /// </summary>
     /// Should check if the action is still valid before executing!
     public void ExecuteAction() {
-        throw new System.NotImplementedException();
+        actionDefinition.Execute(actorParty, otherParty, actor, registeredTargets);
     }
 
 }
