@@ -9,6 +9,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New CombatantData", menuName = "Combatant Data", order = 51)]
 public class CombatantData : ScriptableObject {
 
+    [SerializeField]
+    string combatantName;
+
     [System.Serializable]
     public class Limb{
         public string name;
@@ -44,4 +47,9 @@ public class CombatantData : ScriptableObject {
     public GameObject GetModel(){
         return modelPrefab;
     }
+
+    public string GetName(){
+        return this.combatantName;
+    }
+
 }

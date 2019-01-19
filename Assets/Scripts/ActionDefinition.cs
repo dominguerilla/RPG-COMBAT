@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public abstract class ActionDefinition : ScriptableObject{
     
+    public string actionName;
+
     /// <summary>
     /// Specifies the UI menu that this action should belong to
     /// </summary>

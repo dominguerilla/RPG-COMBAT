@@ -11,26 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a222b717e75e747928e8935f116bf3, type: 3}
   m_Name: Ranger
   m_EditorClassIdentifier: 
+  combatantName: Ranger
   modelPrefab: {fileID: 0}
-  STR: 5
-  INT: 6
-  DEX: 8
-  END: 5
-  LCK: 6
-  HP: 100
-  MP: 60
-  ATK: 70
-  DEF: 50
-  ANATOMY:
-  - name: HEAD
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: TORSO
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: ARMS
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: LEGS
-    PHYS_DEF: 1
-    MAG_DEF: 1
+  baseStats: []
+  anatomy: []

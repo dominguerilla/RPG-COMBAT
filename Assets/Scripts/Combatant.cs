@@ -57,4 +57,7 @@ public class Combatant {
         return isAlive;
     }
 
+    public override string ToString() {
+        return combatantData.GetName();
+    }
 }

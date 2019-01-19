@@ -11,26 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a222b717e75e747928e8935f116bf3, type: 3}
   m_Name: Fighter
   m_EditorClassIdentifier: 
+  combatantName: Fighter
   modelPrefab: {fileID: 0}
-  STR: 8
-  INT: 5
-  DEX: 6
-  END: 6
-  LCK: 5
-  HP: 110
-  MP: 50
-  ATK: 80
-  DEF: 60
-  ANATOMY:
-  - name: HEAD
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: TORSO
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: ARMS
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: LEGS
-    PHYS_DEF: 1
-    MAG_DEF: 1
+  baseStats: []
+  anatomy: []

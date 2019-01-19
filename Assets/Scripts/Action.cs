@@ -53,4 +53,18 @@ public class Action {
         actionDefinition.Execute(actorParty, otherParty, actor, registeredTargets);
     }
 
+    public override string ToString() {
+        string targets = "";
+        if(registeredTargets.Length == 1){
+            targets = registeredTargets[0].ToString();
+        }
+        else{
+            for (int i = 0; i < registeredTargets.Length - 1; i++){
+                targets += registeredTargets[i] + ", ";
+            }
+            targets += "and " + registeredTargets[registeredTargets.Length - 1].ToString();
+        }
+
+        return actor.ToString() + " uses " + actionDefinition.actionName + " on " + targets;
+    }
 }

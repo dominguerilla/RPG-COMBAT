@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef76cbcb9d6f3c4eb704cde36efd062, type: 3}
   m_Name: SwordATK
   m_EditorClassIdentifier: 
+  actionName: SLASH
   category: 0
   targetable: 0
-  targetType: 0
+  targetType: 1
   damage:
     timing: 0
     type: 0

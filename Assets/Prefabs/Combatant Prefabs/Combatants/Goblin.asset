@@ -11,26 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a222b717e75e747928e8935f116bf3, type: 3}
   m_Name: Goblin
   m_EditorClassIdentifier: 
+  combatantName: Goblin
   modelPrefab: {fileID: 0}
-  STR: 4
-  INT: 2
-  DEX: 6
-  END: 3
-  LCK: 4
-  HP: 100
-  MP: 0
-  ATK: 50
-  DEF: 50
-  ANATOMY:
-  - name: HEAD
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: TORSO
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: ARMS
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: LEGS
-    PHYS_DEF: 1
-    MAG_DEF: 1
+  baseStats: []
+  anatomy: []

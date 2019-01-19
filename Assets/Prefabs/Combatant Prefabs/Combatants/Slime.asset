@@ -11,22 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a222b717e75e747928e8935f116bf3, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
+  combatantName: Green Slime
   modelPrefab: {fileID: 1702266177381236, guid: 123c07441b6e5f141908df18589a24fe,
     type: 2}
-  LVL: 10
-  STR: 2
-  INT: 1
-  DEX: 2
-  END: 2
-  LCK: 2
-  HP: 150
-  MP: 0
-  ATK: 40
-  DEF: 30
-  ANATOMY:
-  - name: CORE
-    PHYS_DEF: 1
-    MAG_DEF: 1
-  - name: BODY
-    PHYS_DEF: 1
-    MAG_DEF: 1
+  baseStats: []
+  anatomy: []
