@@ -18,7 +18,6 @@ public class OrderGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.combatants = GenerateCombatants(this.actors);
-        this.generatedActions = GenerateOrders(this.combatants, this.orders);
 	}
     
     Combatant[] GenerateCombatants(CombatantData[] actors){
@@ -42,6 +41,8 @@ public class OrderGenerator : MonoBehaviour {
                 action.RegisterTargets(actors);
             }else{
                 int randomTarget = (int)Random.Range(0f, actors.Length-1);
+
+                // TODO: target is NONE if it targets itself
                 action.RegisterTargets(actors[randomTarget]);
             }
 
@@ -54,7 +55,8 @@ public class OrderGenerator : MonoBehaviour {
         return new List<Action>(this.generatedActions);
     }
 
-    public void PrintOrders(){
+    public void GenerateOrders(){
+        this.generatedActions = GenerateOrders(this.combatants, this.orders);
         for(int i = 0; i < generatedActions.Length; i++){
             Debug.Log(generatedActions[i].ToString());
         }

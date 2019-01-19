@@ -9,8 +9,8 @@ public class OrderGeneratorEditor : Editor {
     public override void OnInspectorGUI() {
         OrderGenerator og = (OrderGenerator)target;
         if(Application.isPlaying){
-            if(GUILayout.Button("Print Orders")){
-                og.PrintOrders();
+            if(GUILayout.Button("Generate Orders")){
+                og.GenerateOrders();
             }
         }
         base.OnInspectorGUI();

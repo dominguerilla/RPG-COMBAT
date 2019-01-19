@@ -10,6 +10,13 @@ public class BasicAttack : ActionDefinition {
 
     public Damage damage;
 
+    public override bool CanTarget(Combatant actor, Combatant target, Combatant[] actorParty = null, Combatant[] enemyParty = null) {
+        if(target.IsAlive() && actor != target){
+            return true;
+        }
+        return false;
+    }
+
     public override void Execute(Combatant[] actorParty, Combatant[] enemyParty, Combatant actor, Combatant[] targets) {
         
     }

@@ -55,7 +55,9 @@ public class Action {
 
     public override string ToString() {
         string targets = "";
-        if(registeredTargets.Length == 1){
+        if(registeredTargets.Length == 0){
+            targets = "NONE";
+        }else if(registeredTargets.Length == 1){
             targets = registeredTargets[0].ToString();
         }
         else{
