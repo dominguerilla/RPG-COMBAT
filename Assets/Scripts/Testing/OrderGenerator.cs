@@ -15,6 +15,7 @@ public class OrderGenerator : MonoBehaviour {
 
     Combatant[] combatants;
     Action[] generatedActions;
+
 	// Use this for initialization
 	void Start () {
 		this.combatants = GenerateCombatants(this.actors);
