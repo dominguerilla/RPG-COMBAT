@@ -1,0 +1,6 @@
+# TODO
+
+Combatant.cs
+1. Actual damage calculation in InflictDamage()
+2. Finish filling out magnitude switch/case table in InflictDamage()
+3. Properly calculate limb resistance
