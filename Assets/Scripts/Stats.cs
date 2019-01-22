@@ -33,4 +33,20 @@ public static class Stats{
         DARK_DEF,
     }
 
+    /// <summary>
+    /// Returns the resistance for the specified damage type.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static STAT GetResistance(Damage.TYPE type) {
+        switch(type) {
+            case Damage.TYPE.BLUNT:
+            case Damage.TYPE.SLASH:
+            case Damage.TYPE.STAB:
+                return STAT.PHYS_DEF;
+            default:
+                throw new System.MissingFieldException("Damage type " + type.ToString() + " has no resistance.");
+        }
+    }
+
 }

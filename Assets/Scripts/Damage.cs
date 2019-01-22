@@ -43,4 +43,15 @@ public class Damage {
 
     [Tooltip("Used only if MAGNITUDE is set to FLAT.")]
     public float flatDamage;
+
+    public override string ToString() {
+        string damageTotal;
+        if(magnitude == MAGNITUDE.FLAT) {
+            damageTotal = "flat (" + flatDamage + ")";
+        }else {
+            damageTotal = System.Enum.GetName(typeof(MAGNITUDE), magnitude);
+        }
+
+        return damageTotal + " " + System.Enum.GetName(typeof(TYPE), type);
+    }
 }

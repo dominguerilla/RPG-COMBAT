@@ -17,7 +17,9 @@ public class BasicAttack : ActionDefinition {
         return false;
     }
 
-    public override void Execute(Combatant[] actorParty, Combatant[] enemyParty, Combatant actor, Combatant[] targets) {
-        
+    public override void Execute(Combatant[] actorParty, Combatant[] enemyParty, Combatant actor, Combatant[] targets, string limbName = null) {
+        foreach(Combatant target in targets) {
+            target.InflictDamage(damage, limbName);
+        }
     }
 }

@@ -26,9 +26,11 @@ public class Combatant {
     GameObject combatantGO;
     Animator anim;
     bool isAlive = true;
+    float currentHealth;
 
     public Combatant(CombatantData combatantData){
         this.combatantData = combatantData;
+        this.currentHealth = combatantData.GetStat(Stats.STAT.HP);
     }
 
 
@@ -56,6 +58,50 @@ public class Combatant {
     public bool IsAlive() {
         return isAlive;
     }
+
+    /// <summary>
+    /// Inflicts damage on a given limb, calculating based on resistances of limb and type/magnitude of damage.
+    /// If limbName is null, uses base stat resistances.
+    /// </summary>
+    /// <returns>Net damage inflicted on this combatant.</returns>
+    public float InflictDamage(Damage dmg, string limbName = null) {
+        
+        // ** super dumb damage calculation ** //
+        // get damage magnitude
+        float damageMagnitude = 0.0f;
+        switch (dmg.magnitude) {
+            case Damage.MAGNITUDE.FLAT:
+                damageMagnitude = dmg.flatDamage;
+                break;
+            default:
+                Debug.LogError("Damage type " + dmg.magnitude.ToString() + " unsupported.");
+                damageMagnitude = 0.0f;
+                break;
+        }
+        
+        float totalLimbResistance = GetTotalLimbResistance(dmg.type, limbName);
+
+        // Damage calculation!!!
+        float totalDamage = damageMagnitude - totalLimbResistance;
+
+        this.currentHealth -= totalDamage;
+        if(this.currentHealth <= 0.0f) {
+            this.isAlive = false;
+        }
+
+        return totalDamage;
+    }
+
+    /// <summary>
+    /// Returns the current resistance value specified for the limb, taking into account the combatant's base stats and its equipment/skill/buffs
+    /// For now, returns base resistance.
+    /// </summary>
+    /// <returns></returns>
+    public float GetTotalLimbResistance(Damage.TYPE type, string limbName) {
+        Stats.STAT stat = Stats.GetResistance(type);
+        return this.combatantData.GetStat(stat, limbName);
+    }
+
 
     public override string ToString() {
         return combatantData.GetName();

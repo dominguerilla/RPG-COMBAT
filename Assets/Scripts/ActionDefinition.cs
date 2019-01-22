@@ -65,6 +65,6 @@ public abstract class ActionDefinition : ScriptableObject{
     /// Do the damage calculation here.
     /// </summary>
     public abstract void Execute(Combatant[] actorParty, Combatant[] enemyParty,
-                                    Combatant actor, Combatant[] targets);    
+                                    Combatant actor, Combatant[] targets, string targetLimb = null);    
     
 }

@@ -18,6 +18,7 @@ public class Action {
     Combatant[] otherParty;
 
     Combatant[] registeredTargets;
+    string targetedLimb = null;
 
     public Action(ActionDefinition actionDefinition, 
         Combatant actor, 
@@ -34,7 +35,7 @@ public class Action {
     /// For ActionDefinitions with targetType set to SINGLE, this would be called only with the single target.
     /// </summary>
     /// <param name="possibleTargets"></param>
-    public void RegisterTargets(params Combatant[] possibleTargets) {
+    public void SetTargets(params Combatant[] possibleTargets) {
         List<Combatant> validTargets = new List<Combatant>();
         foreach(Combatant target in possibleTargets) {
            if(actionDefinition.CanTarget(actor, target, actorParty, otherParty)) {
@@ -46,11 +47,24 @@ public class Action {
     }
 
     /// <summary>
+    /// Target a specific limb. This assumes that the specified limb exists on the targeted combatant.
+    /// If the target type is group, assumes that limb is present in all registered targets.
+    /// </summary>
+    /// <param name="limbName"></param>
+    public void SetTargetLimb(string limbName) {
+        this.targetedLimb = limbName;
+    }
+
+    /// <summary>
     /// Uses ActionDefinition.Execute() to execute action. Called during the Action phase one at a time.
     /// </summary>
     /// Should check if the action is still valid before executing!
     public void ExecuteAction() {
-        actionDefinition.Execute(actorParty, otherParty, actor, registeredTargets);
+        actionDefinition.Execute(actorParty, otherParty, actor, registeredTargets, targetedLimb);
+    }
+
+    public string GetTargetedLimb() {
+        return this.targetedLimb;
     }
 
     public override string ToString() {

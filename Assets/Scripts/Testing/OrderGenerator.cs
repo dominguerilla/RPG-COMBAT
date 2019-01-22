@@ -39,12 +39,12 @@ public class OrderGenerator : MonoBehaviour {
             Action action = new Action(definitions[i], actors[i]);
 
             if(definitions[i].targetType == ActionDefinition.TARGET_TYPE.GROUP){
-                action.RegisterTargets(actors);
+                action.SetTargets(actors);
             }else{
                 int randomTarget = (int)Random.Range(0f, actors.Length-1);
 
                 // TODO: target is NONE if it targets itself
-                action.RegisterTargets(actors[randomTarget]);
+                action.SetTargets(actors[randomTarget]);
             }
 
             orders[i] = action;
