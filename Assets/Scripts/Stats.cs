@@ -49,4 +49,35 @@ public static class Stats{
         }
     }
 
+    /// <summary>
+    /// Calculates the magnitude of the damage given a Damage object.
+    /// If inflictor is set, will use its stats in its calculation.
+    /// </summary>
+    /// <param name="dmg"></param>
+    /// <returns></returns>
+    public static float CalculateDamageMagnitude(Damage dmg, Combatant inflictor = null) {
+        float damageMagnitude = 0.0f;
+        switch (dmg.magnitude) {
+            case Damage.MAGNITUDE.FLAT:
+                damageMagnitude = dmg.flatDamage;
+                break;
+            default:
+                Debug.LogError("Damage type " + dmg.magnitude.ToString() + " unsupported.");
+                damageMagnitude = 0.0f;
+                break;
+        }
+
+        return damageMagnitude;
+    }
+
+    /// <summary>
+    /// Calculates the net damage to be inflicted on a target given a damage magnitude and its resistance value.
+    /// Minimum damage inflicted is 1.
+    /// </summary>
+    public static float CalculateNetDamage(float damageMagnitude, float resistance) {
+        return damageMagnitude - resistance > 1.0f ? damageMagnitude - resistance : 1.0f;
+    }
+
+    
+
 }

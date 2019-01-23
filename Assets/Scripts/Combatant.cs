@@ -62,31 +62,25 @@ public class Combatant {
     /// <summary>
     /// Inflicts damage on a given limb, calculating based on resistances of limb and type/magnitude of damage.
     /// If limbName is null, uses base stat resistances.
+    /// If inflictor is specified, will use its stats in the damage calculation.
     /// </summary>
     /// <returns>Net damage inflicted on this combatant.</returns>
-    public float InflictDamage(Damage dmg, string limbName = null) {
+    public float InflictDamage(Damage dmg, string limbName = null, Combatant inflictor = null) {
         
-        // ** super dumb damage calculation ** //
-        // get damage magnitude
-        float damageMagnitude = 0.0f;
-        switch (dmg.magnitude) {
-            case Damage.MAGNITUDE.FLAT:
-                damageMagnitude = dmg.flatDamage;
-                break;
-            default:
-                Debug.LogError("Damage type " + dmg.magnitude.ToString() + " unsupported.");
-                damageMagnitude = 0.0f;
-                break;
+        if(!isAlive) {
+            Debug.LogError(this.combatantData.GetName() + " is already dead! Attack: " + dmg.ToString());
+            return 0;
         }
-        
+
+        float damageMagnitude = Stats.CalculateDamageMagnitude(dmg, inflictor);
         float totalLimbResistance = GetTotalLimbResistance(dmg.type, limbName);
+        float totalDamage = Stats.CalculateNetDamage(damageMagnitude, totalLimbResistance);
 
-        // Damage calculation!!!
-        float totalDamage = damageMagnitude - totalLimbResistance;
-
+        // health updates
         this.currentHealth -= totalDamage;
         if(this.currentHealth <= 0.0f) {
             this.isAlive = false;
+            Debug.Log(this.combatantData.GetName() + " has died.");
         }
 
         return totalDamage;
@@ -94,7 +88,7 @@ public class Combatant {
 
     /// <summary>
     /// Returns the current resistance value specified for the limb, taking into account the combatant's base stats and its equipment/skill/buffs
-    /// For now, returns base resistance.
+    /// Should call resistance calculation formula. For now, returns base resistance.
     /// </summary>
     /// <returns></returns>
     public float GetTotalLimbResistance(Damage.TYPE type, string limbName) {
