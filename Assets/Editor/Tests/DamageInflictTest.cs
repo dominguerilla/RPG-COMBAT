@@ -19,9 +19,11 @@ public class DamageInflictTest {
     }
 
     [Test]
-    public void DamageInflictFlatDamage() {
-        StatValue stat = new StatValue(Stats.STAT.PHYS_DEF, 3.0f);
-        stats.Add(stat);
+    public void DamageInflict1FlatDamage() {
+        StatValue def = new StatValue(Stats.STAT.PHYS_DEF, 3.0f);
+        StatValue health = new StatValue(Stats.STAT.HP, 5.0f);
+        stats.Add(def);
+        stats.Add(health);
         Limb core = new Limb("Core");
         Limb body = new Limb("Body");
         anatomy.Add(core);
@@ -29,12 +31,13 @@ public class DamageInflictTest {
 
         combData = new CombatantData("Slime", stats, anatomy);
         comb = new Combatant(combData);
-        dmg = new Damage(Damage.TIMING.INSTANT, Damage.TYPE.BLUNT, Damage.MAGNITUDE.FLAT, 10.0f );
-        
+        dmg = new Damage(Damage.TIMING.INSTANT, Damage.TYPE.BLUNT, Damage.MAGNITUDE.FLAT, 1.0f );
+        float originalHealth = comb.GetCurrentHealth();
+
         comb.InflictDamage(dmg);
 
         // Use the Assert class to test conditions.
-        Assert.AreEqual(3.0f, comb.GetCurrentHealth());
+        Assert.Less(comb.GetCurrentHealth(), originalHealth);
     }
 
     // A UnityTest behaves like a coroutine in PlayMode
