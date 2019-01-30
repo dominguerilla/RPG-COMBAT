@@ -51,6 +51,10 @@ public class Combatant {
         return combatantData;
     }
 
+    public float GetCurrentHealth() {
+        return this.currentHealth;
+    }
+
     public void SetGameObject(GameObject GO) {
         this.combatantGO = GO;
     }

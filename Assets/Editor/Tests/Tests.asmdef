@@ -1,0 +1,14 @@
+{
+    "name": "Tests",
+    "references": [
+        "LIMB"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

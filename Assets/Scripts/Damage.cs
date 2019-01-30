@@ -44,6 +44,17 @@ public class Damage {
     [Tooltip("Used only if MAGNITUDE is set to FLAT.")]
     public float flatDamage;
 
+    public Damage() {
+
+    }
+
+    public Damage(TIMING timing, TYPE type, MAGNITUDE mag, float flatDamage = 0.0f) {
+        this.timing = timing;
+        this.type = type;
+        this.magnitude = mag;
+        this.flatDamage = flatDamage;
+    }
+
     public override string ToString() {
         string damageTotal;
         if(magnitude == MAGNITUDE.FLAT) {

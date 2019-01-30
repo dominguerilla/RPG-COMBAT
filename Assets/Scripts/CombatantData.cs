@@ -11,14 +11,6 @@ public class CombatantData : ScriptableObject {
 
     float defaultStatValue = 10.0f;
 
-    [System.Serializable]
-    public class Limb{
-        public string name;
-
-        [Tooltip("Uses the combatant's base stats by default.")]
-        public List<StatValue> limbStats;
-    }
-
     [SerializeField]
     string combatantName;
 
@@ -30,7 +22,14 @@ public class CombatantData : ScriptableObject {
 
     [SerializeField]
     List<Limb> anatomy;
-    
+   
+    public CombatantData(string name, List<StatValue> baseStats, List<Limb> anatomy, GameObject modelPrefab = null) {
+        this.combatantName = name;
+        this.baseStats = baseStats;
+        this.anatomy = anatomy;
+        this.modelPrefab = modelPrefab;
+    }
+     
     /// <summary>
     /// Returns the specified limb, or null if there is no limb with that name found.
     /// </summary>
