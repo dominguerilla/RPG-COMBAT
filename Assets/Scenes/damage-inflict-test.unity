@@ -634,7 +634,12 @@ Prefab:
       propertyPath: battleEndFadeImage
       value: 
       objectReference: {fileID: 173601664}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114370676091629404, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114723048323696872, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114498624662117644, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114989689873934186, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114880337429349912, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1945006891 stripped
