@@ -30,7 +30,17 @@ namespace LIMB {
             this.anatomy = anatomy;
             this.modelPrefab = modelPrefab;
         }
-         
+        
+        /// <summary>
+        /// To initialize data after using ScriptableObject.CreateInstance to create this.
+        /// </summary>
+        public void InitializeData(string name, List<StatValue> baseStats, List<Limb> anatomy, GameObject modelPrefab = null){
+            this.combatantName = name;
+            this.baseStats = baseStats;
+            this.anatomy = anatomy;
+            this.modelPrefab = modelPrefab;
+        }
+
         /// <summary>
         /// Returns the specified limb, or null if there is no limb with that name found.
         /// </summary>

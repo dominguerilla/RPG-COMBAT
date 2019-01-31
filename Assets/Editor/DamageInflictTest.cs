@@ -41,6 +41,42 @@ public class DamageInflictTest {
         Assert.Less(comb.GetCurrentHealth(), originalHealth);
     }
 
+    [Test]
+    public void DifferentLimbResistanceDamage(){
+        // create Core stats
+        List<StatValue> coreStats = new List<StatValue>();
+        StatValue coreDef = new StatValue(Stats.STAT.PHYS_DEF, 1.0f);
+        coreStats.Add(coreDef);
+        Limb core = new Limb("Core", coreStats);
+        List<StatValue> bodyStats = new List<StatValue>();
+        anatomy.Add(core);
+
+        // create Body stats
+        StatValue bodyDef = new StatValue(Stats.STAT.PHYS_DEF, 3.0f);
+        bodyStats.Add(bodyDef);
+        Limb body = new Limb("Body", bodyStats);
+        anatomy.Add(body);
+
+        // create Base stats
+        StatValue baseDef = new StatValue(Stats.STAT.PHYS_DEF, 3.0f);
+        StatValue health = new StatValue(Stats.STAT.HP, 100.0f);
+        stats.Add(health);
+        stats.Add(baseDef);
+
+        combData = ScriptableObject.CreateInstance<CombatantData>();
+        combData.InitializeData("Slime", stats, anatomy);
+        comb = new Combatant(combData);
+        dmg = new Damage(Damage.TIMING.INSTANT, Damage.TYPE.BLUNT, Damage.MAGNITUDE.FLAT, 10.0f);
+
+        float coreDamage = comb.InflictDamage(dmg, "Core");
+        float bodyDamage = comb.InflictDamage(dmg, "Body");
+        float baseDamage = comb.InflictDamage(dmg);
+
+        Assert.Less(bodyDamage, baseDamage);
+        Assert.Less(baseDamage, coreDamage);
+
+    }
+
     // A UnityTest behaves like a coroutine in PlayMode
     // and allows you to yield null to skip a frame in EditMode
     [UnityTest]

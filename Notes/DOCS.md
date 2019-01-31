@@ -8,14 +8,23 @@ All fighters in the battle system have stats that the designer specifies. Howeve
 ### Usage
 Define the possible stats that every fighter must have in the enum Stats.STAT. Examples include STR, DEX, INT, etc...
 
+### Stat Calculation for Attack Defense
+Every attack in the LIMBS battle system can be aimed at a specific limb of a combatant. When calculating the damage done on a limb, the base value of the fighter as well as the limb stat value of the targeted limb is considered. See 'Base stats, Limb stats, and default Stat values' for details.
+
 ## CombatantData 
 The CombatantData (CD) ScriptableObject gives details on a fighter, and all fighters should have a CD asset of their own. Each CD contains:
 * The 3D model gameobject prefab
-* Intrinsic stats
-* The list of Limbs
+* Intrinsic stats (base stats)
+* The list of Limbs, which in turn have their own stats
 
 ### Should this class be inherited?
 Not necessary. Suppose there was a Green Slime CD that the designer made, and he wants to create a new Red Slime that was identical to the green, except it had higher attack. It would be enough to duplicate the Green Slime CD and change the intrinsic attack value, as well as its 3D model prefab.
+
+### Base stats, Limb stats, and default Stat values
+The list of possible stats can be found in Stats, in the stat enum. All CombatantData instances require a value for each of the Stat values to set as its Base value. If no value is specified for the Base value, a Default value is used.
+
+In addition, Limbs have their own list of stat values, which should be treated as a 'bonus' value for that stat, and is only considered for Actions that target those limbs. So, if a Goblin has a base stat value for FIRE_DEF of 10, and their arms have a Limb stat value of FIRE_DEF 5, then any fire attacks against their arms would go against a total FIRE_DEF of 15.
+
 
 ## Combatants
 Given a CombatantData instance, the Combatant class represents a combatant's status during battle. The status includes:

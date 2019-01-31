@@ -29,6 +29,11 @@ namespace LIMB {
         bool isAlive = true;
         float currentHealth;
 
+        /// <summary>
+        /// Create a new Combatant using the supplied Combatant Data.
+        /// The new Combatant's starting HP is based on the BaseStats of the Combatant Data.
+        /// </summary>
+        /// <param name="combatantData"></param>
         public Combatant(CombatantData combatantData){
             this.combatantData = combatantData;
             this.currentHealth = combatantData.GetStat(Stats.STAT.HP);
@@ -78,8 +83,8 @@ namespace LIMB {
             }
 
             float damageMagnitude = Stats.CalculateDamageMagnitude(dmg, inflictor);
-            float totalLimbResistance = GetTotalLimbResistance(dmg.type, limbName);
-            float totalDamage = Stats.CalculateNetDamage(damageMagnitude, totalLimbResistance);
+            float totalResistance = GetTotalResistance(dmg.type, limbName);
+            float totalDamage = Stats.CalculateNetDamage(damageMagnitude, totalResistance);
 
             // health updates
             this.currentHealth -= totalDamage;
@@ -96,9 +101,22 @@ namespace LIMB {
         /// Should call resistance calculation formula. For now, returns base resistance.
         /// </summary>
         /// <returns></returns>
-        public float GetTotalLimbResistance(Damage.TYPE type, string limbName) {
+        public float GetTotalResistance(Damage.TYPE type, string limbName) {
             Stats.STAT stat = Stats.GetResistance(type);
-            return this.combatantData.GetStat(stat, limbName);
+
+            float resistance = 0f;
+            if(limbName != null){
+                // resistance = base stat + limb stat
+                float baseStat = this.combatantData.GetStat(stat);
+                float limbStat = this.combatantData.GetStat(stat, limbName);
+                Debug.Log("Base stat: " + baseStat + ", limb stat: " + limbStat);
+                resistance =  baseStat + limbStat;
+            }else{
+                // resistance = base stat
+                resistance = this.combatantData.GetStat(stat);
+            }
+
+            return resistance;
         }
 
 
