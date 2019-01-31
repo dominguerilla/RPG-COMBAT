@@ -13,6 +13,7 @@ namespace LIMB {
         }
 
         public enum MAGNITUDE{
+            FLAT,
             MINIMAL,
             LIGHT,
             SMALL,
@@ -25,5 +26,6 @@ namespace LIMB {
         public MAGNITUDE Magnitude;
         public DIRECTION Direction;
         public Stats.STAT Stat;
+        public float flatBuff = 1.0f;
     }
 }
