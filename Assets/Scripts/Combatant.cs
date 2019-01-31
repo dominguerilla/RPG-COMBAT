@@ -109,7 +109,6 @@ namespace LIMB {
                 // resistance = base stat + limb stat
                 float baseStat = this.combatantData.GetStat(stat);
                 float limbStat = this.combatantData.GetStat(stat, limbName);
-                Debug.Log("Base stat: " + baseStat + ", limb stat: " + limbStat);
                 resistance =  baseStat + limbStat;
             }else{
                 // resistance = base stat

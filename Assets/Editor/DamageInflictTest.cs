@@ -42,14 +42,15 @@ public class DamageInflictTest {
     }
 
     [Test]
-    public void DifferentLimbResistanceDamage(){
-        // create Core stats
-        List<StatValue> coreStats = new List<StatValue>();
-        StatValue coreDef = new StatValue(Stats.STAT.PHYS_DEF, 1.0f);
-        coreStats.Add(coreDef);
-        Limb core = new Limb("Core", coreStats);
+    // simulates an attack to a bandit's head and body.
+    public void DifferentHeadBodyDamage(){
+        // create Head stats
+        List<StatValue> headStats = new List<StatValue>();
+        StatValue headDef = new StatValue(Stats.STAT.PHYS_DEF, 1.0f);
+        headStats.Add(headDef);
+        Limb head = new Limb("Head", headStats);
         List<StatValue> bodyStats = new List<StatValue>();
-        anatomy.Add(core);
+        anatomy.Add(head);
 
         // create Body stats
         StatValue bodyDef = new StatValue(Stats.STAT.PHYS_DEF, 3.0f);
@@ -64,25 +65,15 @@ public class DamageInflictTest {
         stats.Add(baseDef);
 
         combData = ScriptableObject.CreateInstance<CombatantData>();
-        combData.InitializeData("Slime", stats, anatomy);
+        combData.InitializeData("Bandit", stats, anatomy);
         comb = new Combatant(combData);
         dmg = new Damage(Damage.TIMING.INSTANT, Damage.TYPE.BLUNT, Damage.MAGNITUDE.FLAT, 10.0f);
 
-        float coreDamage = comb.InflictDamage(dmg, "Core");
+        float coreDamage = comb.InflictDamage(dmg, "Head");
         float bodyDamage = comb.InflictDamage(dmg, "Body");
-        float baseDamage = comb.InflictDamage(dmg);
 
-        Assert.Less(bodyDamage, baseDamage);
-        Assert.Less(baseDamage, coreDamage);
+        Assert.Less(bodyDamage, coreDamage);
 
     }
 
-    // A UnityTest behaves like a coroutine in PlayMode
-    // and allows you to yield null to skip a frame in EditMode
-    [UnityTest]
-    public IEnumerator DamageInflictTestWithEnumeratorPasses() {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
-        yield return null;
-    }
 }
