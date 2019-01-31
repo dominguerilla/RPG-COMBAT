@@ -167,6 +167,27 @@ Prefab:
       propertyPath: battleEndFadeImage
       value: 
       objectReference: {fileID: 625824540}
+    - target: {fileID: 114723048323696872, guid: 84221c7380260c84e9cae446100a0f5b,
+        type: 2}
+      propertyPath: commandUI
+      value: 
+      objectReference: {fileID: 1419662680}
+    - target: {fileID: 114723048323696872, guid: 84221c7380260c84e9cae446100a0f5b,
+        type: 2}
+      propertyPath: battleStartFadeImage
+      value: 
+      objectReference: {fileID: 411999765}
+    - target: {fileID: 114723048323696872, guid: 84221c7380260c84e9cae446100a0f5b,
+        type: 2}
+      propertyPath: battleEndFadeImage
+      value: 
+      objectReference: {fileID: 625824540}
+    - target: {fileID: 114989689873934186, guid: 84221c7380260c84e9cae446100a0f5b,
+        type: 2}
+      propertyPath: battleScenePrefab
+      value: 
+      objectReference: {fileID: 1432717543928542, guid: 3fbbdf3e16e782c4db7daafc5a399f55,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
   m_IsPrefabAsset: 0
@@ -229,6 +250,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 443022, guid: e0bcb36554be1124b8a89d63037350be,
     type: 2}
   m_PrefabInternal: {fileID: 79611753}
+--- !u!1 &99573017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1800322631985958, guid: 84221c7380260c84e9cae446100a0f5b,
+    type: 2}
+  m_PrefabInternal: {fileID: 45754041}
+--- !u!114 &99573024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 99573017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa40ff7fe458454f895994018dbc056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &126142548
 Prefab:
   m_ObjectHideFlags: 0
@@ -2349,6 +2386,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 497450, guid: c87a99b4c24b9ce48bac40727eb1ecb6,
     type: 2}
   m_PrefabInternal: {fileID: 1402662829}
+--- !u!1 &1419662680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1324618247326122, guid: 3ce5dde3c15231d4c986f6aee2e344db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1064897332}
 --- !u!1001 &1449099101
 Prefab:
   m_ObjectHideFlags: 0

@@ -1,24 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 
 namespace LIMB {
-    [CustomEditor(typeof(FieldManager))]
-    public class FieldManagerEditor : Editor {
-
+    [CustomEditor(typeof(BattleTester))]
+    public class BattleTesterEditor : Editor {
         public override void OnInspectorGUI() {
-            FieldManager manager = (FieldManager)target;
-            if (Application.isPlaying && manager.DebugMode){
+            BattleTester bt = (BattleTester)target;
+            if (Application.isPlaying && bt.DebugMode){
                 if(GUILayout.Button("Start Battle")){
-                    manager.StartBattle();
+                    bt.StartBattle();
                 }
                 if(GUILayout.Button("End Battle")){
-                    manager.EndBattle();
+                    bt.EndBattle();
                 }
             }
 
             DrawDefaultInspector();
         }
+
     }
 }

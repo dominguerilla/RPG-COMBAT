@@ -4,7 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using LIMB;
 
-[CustomEditor(typeof(BattleManager))]
-public class BattleManagerEditor : Editor {
+namespace LIMB {
+    [CustomEditor(typeof(BattleManager))]
+    public class BattleManagerEditor : Editor {
 
+    }
 }
