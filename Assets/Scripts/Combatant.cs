@@ -49,26 +49,6 @@ namespace LIMB {
             }
         }
 
-        public void PlayAnimation(string trigger) {
-            this.anim.SetTrigger(trigger);
-        }
-
-        public CombatantData GetData(){
-            return combatantData;
-        }
-
-        public float GetCurrentHealth() {
-            return this.currentHealth;
-        }
-
-        public void SetGameObject(GameObject GO) {
-            this.combatantGO = GO;
-        }
-
-        public bool IsAlive() {
-            return isAlive;
-        }
-
         /// <summary>
         /// Inflicts damage on a given limb, calculating based on resistances of limb and type/magnitude of damage.
         /// If limbName is null, uses base stat resistances.
@@ -118,6 +98,25 @@ namespace LIMB {
             return resistance;
         }
 
+        public void PlayAnimation(string trigger) {
+            this.anim.SetTrigger(trigger);
+        }
+
+        public CombatantData GetData(){
+            return combatantData;
+        }
+
+        public float GetCurrentHealth() {
+            return this.currentHealth;
+        }
+
+        public void SetGameObject(GameObject GO) {
+            this.combatantGO = GO;
+        }
+
+        public bool IsAlive() {
+            return isAlive;
+        }
 
         public override string ToString() {
             return combatantData.GetName();
