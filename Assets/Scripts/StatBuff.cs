@@ -29,25 +29,35 @@ namespace LIMB {
         public float flatBuff = 1.0f;
 
         public float PercentValue() {
+            float mag = 0f;
             switch(Magnitude) {
                 case MAGNITUDE.MINIMAL:
-                    return 5f;
+                    mag = 5f;
+                    break;
                 case MAGNITUDE.LIGHT:
-                    return 10f;
+                    mag = 10f;
+                    break;
                 case MAGNITUDE.SMALL:
-                    return 15f;
+                    mag = 15f;
+                    break;
                 case MAGNITUDE.MEDIUM:
-                    return 25f;
+                    mag = 25f;
+                    break;
                 case MAGNITUDE.LARGE:
-                    return 45f;
+                    mag = 45f;
+                    break;
                 case MAGNITUDE.HEAVY:
-                    return 65f;
+                    mag = 65f;
+                    break;
                 case MAGNITUDE.MASSIVE:
-                    return 80f;
+                    mag = 80f;
+                    break;
                 default:
-                    return flatBuff;
-
+                    mag = flatBuff;
+                    break;
             }
+            return mag * (float)Direction;
+
         }
     }
 }

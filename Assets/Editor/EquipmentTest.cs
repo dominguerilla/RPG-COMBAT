@@ -35,7 +35,7 @@ public class EquipmentTest {
         cData.SetAnatomy(head);
         
         com = new Combatant(cData);
-        float initialDef = com.GetRawStat(Stats.STAT.PHYS_DEF, "Head");
+        float initialDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
         Debug.Log("Initial Def: " + initialDef);
         com.Equip("Head", helmet);
         float afterDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
@@ -45,7 +45,28 @@ public class EquipmentTest {
 
     [Test]
     public void EquipArmorMediumDebuff() {
-        Assert.IsTrue(false);
+        Equipment cursedRing = ScriptableObject.CreateInstance<Equipment>();
+        StatBuff curse = new StatBuff();
+        curse.Direction = StatBuff.DIRECTION.DOWN;
+        curse.Magnitude = StatBuff.MAGNITUDE.MEDIUM;
+        curse.Stat = Stats.STAT.DARK_DEF;
+        cursedRing.AddBuff(curse);
+
+        StatValue baseDef = new StatValue(Stats.STAT.DARK_DEF, 3f);
+        StatValue handDef = new StatValue(Stats.STAT.DARK_DEF, 2f);
+        Limb hand = new Limb("Hand", handDef);
+
+        cData.SetName("Mage");
+        cData.SetBaseStats(baseDef);
+        cData.SetAnatomy(hand);
+
+        com = new Combatant(cData);
+        float initialDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hand");
+        Debug.Log("Initial dark def: " + initialDef);
+        com.Equip("Hand", cursedRing);
+        float afterDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hand");
+        Debug.Log("After dark def: " + afterDef);
+        Assert.Less(afterDef,initialDef);
     }
 
     [Test]
