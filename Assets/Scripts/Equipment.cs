@@ -32,5 +32,9 @@ namespace LIMB {
                 return null;
             }
         }
+
+        public void SetName(string name){
+            this.name = name;
+        }
     }
 }

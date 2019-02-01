@@ -114,6 +114,16 @@ namespace LIMB {
             limb.Equip(equip);
         }
 
+        public void DeEquip(Equipment equip){
+            foreach(Limb limb in this.combatantData.GetAnatomy()){
+                if(limb.IsEquipped(equip)){
+                    limb.DeEquip(equip);
+                    return;
+                }
+            }
+            Debug.LogError("No equipment matching " + equip.name + " found.");
+        }
+
         public float GetRawStat(Stats.STAT stat, string limbName = null) {
             return this.combatantData.GetStat(stat, limbName);
         }

@@ -88,6 +88,33 @@ public class EquipmentTest {
     }
 
     [Test]
+    public void DeEquipArmorBuff(){
+        Equipment boots = ScriptableObject.CreateInstance<Equipment>();
+        boots.SetName("Boots of Earth Def");
+        StatBuff defBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.MASSIVE, Stats.STAT.EARTH_DEF);
+        boots.AddBuffs(defBuff);
+
+        StatValue baseEarthDef = new StatValue(Stats.STAT.EARTH_DEF, 3f);
+        StatValue footEarthDef = new StatValue(Stats.STAT.EARTH_DEF, 1f);
+        Limb feet = new Limb("Feet", footEarthDef);
+
+        cData.SetName("Warrior");
+        cData.SetBaseStats(baseEarthDef);
+        cData.SetAnatomy(feet);
+
+        com = new Combatant(cData);
+        float initialDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
+        com.Equip("Feet", boots);
+        float equippedDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
+        Assert.Less(initialDef, equippedDef);
+
+        com.DeEquip(boots);
+        float dequippedDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
+        Assert.AreEqual(initialDef, dequippedDef);
+
+    }
+
+    [Test]
     public void EquipArmorTwoBuffsSameStatOneDebuffDifferentStat() {
         Assert.IsTrue(false);
     }

@@ -25,6 +25,14 @@ namespace LIMB {
             this.equipment.Add(equipment);
         }
 
+        public void DeEquip(Equipment equipment){
+            this.equipment.Remove(equipment);
+        }
+
+        public bool IsEquipped(Equipment equipment){
+            return this.equipment.Contains(equipment);
+        }
+
         public float GetBuffedStatus(Stats.STAT stat, float baseStat) {
             float totalStats = baseStat + GetStat(stat);
 
