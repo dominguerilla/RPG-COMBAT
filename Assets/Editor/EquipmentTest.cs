@@ -39,8 +39,8 @@ public class EquipmentTest {
         
         com = new Combatant(cData);
         float initialDef = com.GetRawStat(Stats.STAT.PHYS_DEF, "Head");
-        com.Equip(helmet);
-        float afterDef = com.GetCalculatedStat(Stats.STAT.PHYS_DEF, "Head");
+        com.Equip("Head", helmet);
+        float afterDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
         Assert.Less(initialDef, afterDef);
     }
 
