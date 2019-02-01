@@ -28,6 +28,12 @@ namespace LIMB {
         public Stats.STAT Stat;
         public float flatBuff = 1.0f;
 
+        public StatBuff(StatBuff.DIRECTION dir, StatBuff.MAGNITUDE mag, Stats.STAT stat){
+            this.Direction = dir;
+            this.Magnitude = mag;
+            this.Stat = stat;
+        }
+
         public float PercentValue() {
             float mag = 0f;
             switch(Magnitude) {

@@ -6,11 +6,13 @@ namespace LIMB {
     public class Equipment : ScriptableObject {
         public List<StatBuff> StatBuffs;
 
-        public void AddBuff(StatBuff buff) {
+        public void AddBuffs(params StatBuff[] buffs) {
             if(StatBuffs == null)
                 StatBuffs = new List<StatBuff>();
 
-            StatBuffs.Add(buff);
+            foreach(StatBuff buff in buffs){
+                StatBuffs.Add(buff);
+            }
         }
 
         /// <summary>
