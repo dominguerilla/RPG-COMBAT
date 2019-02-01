@@ -12,5 +12,23 @@ namespace LIMB {
 
             StatBuffs.Add(buff);
         }
+
+        /// <summary>
+        /// Returns all the buffs pertaining to a given stat.
+        /// </summary>
+        public List<StatBuff> GetBuffs(Stats.STAT stat) {
+            List<StatBuff> buffs = new List<StatBuff>();
+            foreach(StatBuff buff in this.StatBuffs) {
+                if(buff.Stat == stat) {
+                    buffs.Add(buff);
+                }
+            }
+
+            if(buffs.Count > 0) {
+                return buffs;
+            }else {
+                return null;
+            }
+        }
     }
 }

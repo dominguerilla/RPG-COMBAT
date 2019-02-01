@@ -28,14 +28,13 @@ namespace LIMB {
         public float GetBuffedStatus(Stats.STAT stat, float baseStat) {
             float totalStats = baseStat + GetStat(stat);
 
-            List<StatBuff> buffs = new List<StatBuff>();
             float percentageDelta = 0f;
             foreach(Equipment equip in equipment) {
                 List<StatBuff> equipBuffs = equip.GetBuffs(stat);
                 foreach(StatBuff equipBuff in equipBuffs) {
                     // collect percentages total of all buffs
                     // ex. +10% DEF glove +5% DEF ring -3% DEF wound = +12% DEF
-                    // percentageDelta
+                    percentageDelta += equipBuff.PercentValue();
                 }
             }
 

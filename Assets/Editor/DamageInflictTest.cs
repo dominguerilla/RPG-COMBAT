@@ -45,17 +45,13 @@ public class DamageInflictTest {
     // simulates an attack to a bandit's head and body.
     public void DifferentHeadBodyDamage(){
         // create Head stats
-        List<StatValue> headStats = new List<StatValue>();
         StatValue headDef = new StatValue(Stats.STAT.PHYS_DEF, 1.0f);
-        headStats.Add(headDef);
-        Limb head = new Limb("Head", headStats);
-        List<StatValue> bodyStats = new List<StatValue>();
+        Limb head = new Limb("Head", headDef);
         anatomy.Add(head);
 
         // create Body stats
         StatValue bodyDef = new StatValue(Stats.STAT.PHYS_DEF, 3.0f);
-        bodyStats.Add(bodyDef);
-        Limb body = new Limb("Body", bodyStats);
+        Limb body = new Limb("Body", bodyDef);
         anatomy.Add(body);
 
         // create Base stats

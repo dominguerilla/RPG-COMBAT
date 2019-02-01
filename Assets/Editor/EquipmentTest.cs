@@ -8,29 +8,26 @@ public class EquipmentTest {
 
     CombatantData cData;
     Combatant com;
-    List<StatValue> baseStats;
 
 
     [SetUp]
     public void Setup() {
         cData = ScriptableObject.CreateInstance<CombatantData>();
-        baseStats = new List<StatValue>();
     }
 
     [Test]
-    public void EquipArmorFlatBuff() {
+    public void EquipArmorLightBuff() {
         // creating helmet
         Equipment helmet = ScriptableObject.CreateInstance<Equipment>();
         StatBuff buff = new StatBuff();
         buff.Direction = StatBuff.DIRECTION.UP;
-        buff.Magnitude = StatBuff.MAGNITUDE.FLAT;
+        buff.Magnitude = StatBuff.MAGNITUDE.LIGHT;
         buff.Stat = Stats.STAT.PHYS_DEF;
-        buff.flatBuff = 10.0f;
         helmet.AddBuff(buff);
         
         // creating hero
-        StatValue baseDef = new StatValue(Stats.STAT.PHYS_DEF, 10f);
-        StatValue headDef = new StatValue(Stats.STAT.PHYS_DEF, 1f);
+        StatValue baseDef = new StatValue(Stats.STAT.PHYS_DEF, 5f);
+        StatValue headDef = new StatValue(Stats.STAT.PHYS_DEF, 5f);
         Limb head = new Limb("Head", headDef);
 
         cData.SetName("Hero");
@@ -39,9 +36,26 @@ public class EquipmentTest {
         
         com = new Combatant(cData);
         float initialDef = com.GetRawStat(Stats.STAT.PHYS_DEF, "Head");
+        Debug.Log("Initial Def: " + initialDef);
         com.Equip("Head", helmet);
         float afterDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
+        Debug.Log("After Def: " + afterDef);
         Assert.Less(initialDef, afterDef);
+    }
+
+    [Test]
+    public void EquipArmorMediumDebuff() {
+        Assert.IsTrue(false);
+    }
+
+    [Test]
+    public void EquipArmorThreeSmallBuffs() {
+        Assert.IsTrue(false);
+    }
+
+    [Test]
+    public void EquipThreeEquipsAllDifferentBuffs() {
+        Assert.IsTrue(false);
     }
 
     // attacking, equipping a sword to a hand, attacking again

@@ -27,5 +27,27 @@ namespace LIMB {
         public DIRECTION Direction;
         public Stats.STAT Stat;
         public float flatBuff = 1.0f;
+
+        public float PercentValue() {
+            switch(Magnitude) {
+                case MAGNITUDE.MINIMAL:
+                    return 5f;
+                case MAGNITUDE.LIGHT:
+                    return 10f;
+                case MAGNITUDE.SMALL:
+                    return 15f;
+                case MAGNITUDE.MEDIUM:
+                    return 25f;
+                case MAGNITUDE.LARGE:
+                    return 45f;
+                case MAGNITUDE.HEAVY:
+                    return 65f;
+                case MAGNITUDE.MASSIVE:
+                    return 80f;
+                default:
+                    return flatBuff;
+
+            }
+        }
     }
 }

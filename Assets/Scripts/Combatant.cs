@@ -105,7 +105,8 @@ namespace LIMB {
         public float GetTotalStat(Stats.STAT stat, string limbName) {
             Limb limb = GetLimb(limbName);
             float baseStat = GetRawStat(stat);
-            float equippedStat = limb.GetBuffedStatus(baseStat);
+            float equippedStat = limb.GetBuffedStatus(stat, baseStat);
+            return equippedStat;
         }
 
         public void Equip(string limbName, Equipment equip) {
@@ -118,7 +119,7 @@ namespace LIMB {
         }
 
         public Limb GetLimb(string limbName) {
-
+            return this.combatantData.GetLimb(limbName);
         }
 
         public void PlayAnimation(string trigger) {
