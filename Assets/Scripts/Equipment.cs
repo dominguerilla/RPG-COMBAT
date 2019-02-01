@@ -19,6 +19,9 @@ namespace LIMB {
         /// Returns all the buffs pertaining to a given stat.
         /// </summary>
         public List<StatBuff> GetBuffs(Stats.STAT stat) {
+            if(this.StatBuffs == null)
+                this.StatBuffs = new List<StatBuff>();
+
             List<StatBuff> buffs = new List<StatBuff>();
             foreach(StatBuff buff in this.StatBuffs) {
                 if(buff.Stat == stat) {
@@ -26,11 +29,7 @@ namespace LIMB {
                 }
             }
 
-            if(buffs.Count > 0) {
-                return buffs;
-            }else {
-                return null;
-            }
+            return buffs;
         }
 
         public void SetName(string name){

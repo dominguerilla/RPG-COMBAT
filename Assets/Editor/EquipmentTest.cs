@@ -33,11 +33,10 @@ public class EquipmentTest {
         
         com = new Combatant(cData);
         float initialDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
-        Debug.Log("Initial Def: " + initialDef);
         com.Equip("Head", helmet);
         float afterDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
-        Debug.Log("After Def: " + afterDef);
         Assert.Less(initialDef, afterDef);
+        Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
     }
 
     [Test]
@@ -61,6 +60,7 @@ public class EquipmentTest {
         float afterDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hand");
         Debug.Log("After dark def: " + afterDef);
         Assert.Less(afterDef,initialDef);
+        Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
     }
 
     [Test]
@@ -84,6 +84,7 @@ public class EquipmentTest {
         com.Equip("Chest", necklace);
         float afterDef = com.GetTotalStat(Stats.STAT.FIRE_DEF, "Chest");
         Assert.Less(initialDef, afterDef);
+        Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
 
     }
 
@@ -107,20 +108,46 @@ public class EquipmentTest {
         com.Equip("Feet", boots);
         float equippedDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
         Assert.Less(initialDef, equippedDef);
+        Debug.Log("Initial Def: " + initialDef);
 
         com.DeEquip(boots);
         float dequippedDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
         Assert.AreEqual(initialDef, dequippedDef);
-
+        Debug.Log("Equipped Def: " + equippedDef + ", Dequip Def: " + dequippedDef);
     }
 
     [Test]
-    public void EquipArmorTwoBuffsSameStatOneDebuffDifferentStat() {
-        Assert.IsTrue(false);
+    public void EquipArmorTwoBuffsOneDebuffSameStat() {
+        Equipment ring = ScriptableObject.CreateInstance<Equipment>();
+        StatBuff elecDefBoost1 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.ELECTRIC_DEF);
+        StatBuff elecDefBoost2 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.ELECTRIC_DEF);
+        StatBuff elecDefDebuff = new StatBuff(StatBuff.DIRECTION.DOWN, StatBuff.MAGNITUDE.SMALL, Stats.STAT.ELECTRIC_DEF);
+        ring.AddBuffs(elecDefBoost1, elecDefBoost2, elecDefDebuff);
+
+        StatValue baseElecDef = new StatValue(Stats.STAT.ELECTRIC_DEF, 7f);
+        StatValue handElecDef = new StatValue(Stats.STAT.ELECTRIC_DEF, 3f);
+        Limb hand = new Limb("Hands", handElecDef);
+
+        cData.SetName("Lightning Archer");
+        cData.SetBaseStats(baseElecDef);
+        cData.SetAnatomy(hand);
+
+        com = new Combatant(cData);
+        float initialDef = com.GetTotalStat(Stats.STAT.ELECTRIC_DEF, "Hands");
+        com.Equip("Hands", ring);
+        float afterDef = com.GetTotalStat(Stats.STAT.ELECTRIC_DEF, "Hands");
+        Assert.Less(initialDef,afterDef);
+        Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
+
     }
 
     [Test]
     public void EquipThreeEquipsAllDifferentBuffs() {
+        Assert.IsTrue(false);
+    }
+
+    [Test]
+    public void EquipArmorNoBuffs(){
         Assert.IsTrue(false);
     }
 }
