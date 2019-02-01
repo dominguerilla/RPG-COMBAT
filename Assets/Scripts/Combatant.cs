@@ -98,6 +98,29 @@ namespace LIMB {
             return resistance;
         }
 
+        /// <summary>
+        /// Returns the calculated value of stat based on base stats, limb stats, and equipment buffs of the given limb
+        /// </summary>
+        /// <returns></returns>
+        public float GetTotalStat(Stats.STAT stat, string limbName) {
+            Limb limb = GetLimb(limbName);
+            float baseStat = GetRawStat(stat);
+            float equippedStat = limb.GetBuffedStatus(baseStat);
+        }
+
+        public void Equip(string limbName, Equipment equip) {
+            Limb limb = GetLimb(limbName);
+            limb.Equip(equip);
+        }
+
+        public float GetRawStat(Stats.STAT stat, string limbName = null) {
+            return this.combatantData.GetStat(stat, limbName);
+        }
+
+        public Limb GetLimb(string limbName) {
+
+        }
+
         public void PlayAnimation(string trigger) {
             this.anim.SetTrigger(trigger);
         }

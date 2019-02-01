@@ -82,12 +82,24 @@ namespace LIMB {
             return modelPrefab;
         }
 
+        public void SetName(string name) {
+            this.combatantName = name;
+        }
+
         public string GetName(){
             return this.combatantName;
         }
 
         public List<Limb> GetAnatomy(){
             return anatomy;
+        }
+
+        public void SetAnatomy(params Limb[] limbs) {
+            this.anatomy = new List<Limb>(limbs);
+        }
+
+        public void SetBaseStats(params StatValue[] stats) {
+            this.baseStats = new List<StatValue>(stats);
         }
 
         

@@ -12,9 +12,9 @@ namespace LIMB {
 
         public Limb() { }
 
-        public Limb(string name, List<StatValue> limbStats = null) {
+        public Limb(string name, params StatValue[] limbStats) {
             this.name = name;
-            this.limbStats = limbStats;
+            this.limbStats = new List<StatValue>(limbStats);
         }
     }
 }
