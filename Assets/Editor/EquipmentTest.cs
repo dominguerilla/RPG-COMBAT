@@ -16,7 +16,7 @@ public class EquipmentTest {
     }
 
     [Test]
-    public void EquipArmorLightBuff() {
+    public void EquipArmorLightLimbBuff() {
         // creating helmet
         Equipment helmet = ScriptableObject.CreateInstance<Equipment>();
         StatBuff buff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.PHYS_DEF);
@@ -40,7 +40,7 @@ public class EquipmentTest {
     }
 
     [Test]
-    public void EquipArmorMediumDebuff() {
+    public void EquipArmorMediumLimbDebuff() {
         Equipment cursedRing = ScriptableObject.CreateInstance<Equipment>();
         StatBuff curse = new StatBuff(StatBuff.DIRECTION.DOWN, StatBuff.MAGNITUDE.MEDIUM, Stats.STAT.DARK_DEF);
         cursedRing.AddBuffs(curse);
@@ -64,7 +64,7 @@ public class EquipmentTest {
     }
 
     [Test]
-    public void EquipOneNecklaceThreeBuffsSameStat() {
+    public void EquipOneNecklaceThreeLimbBuffsSameStat() {
         Equipment necklace = ScriptableObject.CreateInstance<Equipment>();
         StatBuff buff1 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.FIRE_DEF);
         StatBuff buff2 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.FIRE_DEF);
@@ -89,7 +89,7 @@ public class EquipmentTest {
     }
 
     [Test]
-    public void DeEquipArmorBuff(){
+    public void DeEquipArmorLimbBuff(){
         Equipment boots = ScriptableObject.CreateInstance<Equipment>();
         boots.SetName("Boots of Earth Def");
         StatBuff defBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.MASSIVE, Stats.STAT.EARTH_DEF);
@@ -117,7 +117,7 @@ public class EquipmentTest {
     }
 
     [Test]
-    public void EquipArmorTwoBuffsOneDebuffSameStat() {
+    public void EquipArmorTwoBuffsOneDebuffSameLimbStat() {
         Equipment ring = ScriptableObject.CreateInstance<Equipment>();
         StatBuff elecDefBoost1 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.ELECTRIC_DEF);
         StatBuff elecDefBoost2 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.ELECTRIC_DEF);
@@ -142,8 +142,55 @@ public class EquipmentTest {
     }
 
     [Test]
-    public void EquipThreeEquipsAllDifferentBuffs() {
-        Assert.IsTrue(false);
+    public void EquipTwoEquipsDifferentLimbBuffs() {
+        Equipment ring = ScriptableObject.CreateInstance<Equipment>();
+        StatBuff ringBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.DARK_DEF);
+        ring.AddBuffs(ringBuff);
+
+        Equipment diodem = ScriptableObject.CreateInstance<Equipment>();
+        StatBuff diodemBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.MAG_ATK);
+        diodem.AddBuffs(diodemBuff);
+
+        StatValue baseDarkDef = new StatValue(Stats.STAT.DARK_DEF, 5f);
+        StatValue handDarkDef = new StatValue(Stats.STAT.DARK_DEF, 2f);
+        StatValue baseMagATK = new StatValue(Stats.STAT.MAG_ATK, 5f);
+        StatValue headMagATK = new StatValue(Stats.STAT.MAG_ATK, 2f);
+        Limb hand = new Limb("Hands", handDarkDef);
+        Limb head = new Limb("Head", headMagATK);
+
+        cData.SetName("Lich");
+        cData.SetBaseStats(baseDarkDef, baseMagATK);
+        cData.SetAnatomy(hand, head);
+
+        com = new Combatant(cData);
+
+        float initialHandDarkDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hands");
+        float initialHandMagATK = com.GetTotalStat(Stats.STAT.MAG_ATK, "Hands");
+        float initialHeadDarkDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Head");
+        float initialHeadMagATK = com.GetTotalStat(Stats.STAT.MAG_ATK, "Head");
+
+        // check if dark def on hands increased
+        com.Equip("Hands", ring);
+        float afterHandDarkDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hands");
+        Assert.Less(initialHandDarkDef, afterHandDarkDef);
+
+        // check that dark def on head was not changed
+        Assert.AreEqual(initialHeadDarkDef, com.GetTotalStat(Stats.STAT.DARK_DEF, "Head"));
+
+        // check if mag atk on head increased
+        com.Equip("Head", diodem);
+        float afterHeadMagATK = com.GetTotalStat(Stats.STAT.MAG_ATK, "Head");
+        Assert.Less(initialHeadMagATK, afterHeadMagATK);
+
+        // check that mag atk on hands was not changed
+        Assert.AreEqual(initialHandMagATK, com.GetTotalStat(Stats.STAT.MAG_ATK, "Hands"));        
+    }
+
+    [Test]
+    public void BaseDefBuff() {
+        Equipment helmet = ScriptableObject.CreateInstance<Equipment>();
+        StatBuff baseWaterDefBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.MEDIUM, Stats.STAT.WATER_DEF);
+        helmet.AddBuffs(baseWaterDefBuff);
     }
 
     [Test]
