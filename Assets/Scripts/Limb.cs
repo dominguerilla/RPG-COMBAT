@@ -8,8 +8,11 @@ namespace LIMB {
         public string name;
 
         [Tooltip("Uses the combatant's base stats by default.")]
-        public List<StatValue> limbStats;
-        public List<Equipment> equipment;
+        [SerializeField]
+        List<StatValue> limbStats;
+
+        [SerializeField]
+        List<Equipment> equipment;
 
         static float DEFAULT_STAT = 1f;
 
@@ -50,6 +53,9 @@ namespace LIMB {
             return totalStats + delta;
         }
         
+        public List<StatValue> GetLimbStats(){
+            return this.limbStats;
+        }
 
         public float GetStat(Stats.STAT stat) {
             // TODO duplication in CombatantData.GetStat()

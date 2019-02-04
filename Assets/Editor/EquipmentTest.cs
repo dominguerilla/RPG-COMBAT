@@ -195,6 +195,18 @@ public class EquipmentTest {
 
     [Test]
     public void EquipArmorNoBuffs(){
-        Assert.IsTrue(false);
+        Equipment mask = ScriptableObject.CreateInstance<Equipment>();
+
+        Limb face = new Limb("Face");
+        
+        cData.SetName("Ordinary guy");
+        cData.SetAnatomy(face);
+
+        com = new Combatant(cData);
+
+        float initialDef = com.GetTotalStat(Stats.STAT.ICE_DEF, "Face");
+        com.Equip("Face", mask);
+        float afterDef = com.GetTotalStat(Stats.STAT.ICE_DEF, "Face");
+        Assert.AreEqual(initialDef, afterDef);
     }
 }

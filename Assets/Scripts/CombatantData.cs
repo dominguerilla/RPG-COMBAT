@@ -23,14 +23,12 @@ namespace LIMB {
 
         [SerializeField]
         List<Limb> anatomy;
-       
-        public CombatantData(string name, List<StatValue> baseStats, List<Limb> anatomy, GameObject modelPrefab = null) {
-            this.combatantName = name;
-            this.baseStats = baseStats;
-            this.anatomy = anatomy;
-            this.modelPrefab = modelPrefab;
+
+        private void OnEnable() {
+            this.baseStats = new List<StatValue>();
+            this.anatomy = new List<Limb>();
         }
-        
+
         /// <summary>
         /// To initialize data after using ScriptableObject.CreateInstance to create this.
         /// </summary>
@@ -65,7 +63,7 @@ namespace LIMB {
             List<StatValue> searchStats;
             if (limb != null) {
                 Limb l = GetLimb(limb);
-                searchStats = l.limbStats;
+                searchStats = l.GetLimbStats();
             }else {
                 searchStats = this.baseStats;
             }

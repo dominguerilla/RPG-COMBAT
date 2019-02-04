@@ -23,14 +23,13 @@ public class DamageInflictTest {
     public void DamageInflict1FlatDamage() {
         StatValue def = new StatValue(Stats.STAT.PHYS_DEF, 3.0f);
         StatValue health = new StatValue(Stats.STAT.HP, 5.0f);
-        stats.Add(def);
-        stats.Add(health);
         Limb core = new Limb("Core");
         Limb body = new Limb("Body");
-        anatomy.Add(core);
-        anatomy.Add(body);
 
-        combData = new CombatantData("Slime", stats, anatomy);
+        combData = ScriptableObject.CreateInstance<CombatantData>();
+        combData.SetName("Slime");
+        combData.SetBaseStats(def, health);
+        combData.SetAnatomy(core, body);
         comb = new Combatant(combData);
         dmg = new Damage(Damage.TIMING.INSTANT, Damage.TYPE.BLUNT, Damage.MAGNITUDE.FLAT, 1.0f );
         float originalHealth = comb.GetCurrentHealth();
