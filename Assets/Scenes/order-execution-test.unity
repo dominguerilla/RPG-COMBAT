@@ -634,7 +634,12 @@ Prefab:
       propertyPath: battleEndFadeImage
       value: 
       objectReference: {fileID: 173601664}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114723048323696872, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114370676091629404, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114498624662117644, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114880337429349912, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
+    - {fileID: 114989689873934186, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 84221c7380260c84e9cae446100a0f5b, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1945006891 stripped
@@ -661,14 +666,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0049e604f5270eb4eb7879972893d029, type: 2}
   - {fileID: 11400000, guid: 8bd02fadc9bc56549867613d2b2dd0ce, type: 2}
   - {fileID: 11400000, guid: 358c083fde8cf3740862f344924f6a47, type: 2}
---- !u!114 &1945006898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1945006891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa40ff7fe458454f895994018dbc056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
