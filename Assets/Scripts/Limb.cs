@@ -5,7 +5,9 @@ using UnityEngine;
 namespace LIMB {
     [System.Serializable]
     public class Limb{
-        public string name;
+
+        [SerializeField]
+        string name;
 
         [Tooltip("Uses the combatant's base stats by default.")]
         [SerializeField]
@@ -59,12 +61,15 @@ namespace LIMB {
 
         public float GetStat(Stats.STAT stat) {
             // TODO duplication in CombatantData.GetStat()
-            if (limbStats.Exists(x => x.Stat == stat)) {
-                return limbStats.Find(x => x.Stat == stat).Value;
+            if (limbStats.Exists(x => x.GetStat() == stat)) {
+                return limbStats.Find(x => x.GetStat() == stat).GetValue();
             }else {
                 return DEFAULT_STAT;
             }
         }
 
+        public string GetName(){
+            return name;
+        }
     }
 }

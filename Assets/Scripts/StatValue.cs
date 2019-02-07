@@ -6,12 +6,23 @@ namespace LIMB {
     [System.Serializable]
     public class StatValue {
 
-        public Stats.STAT Stat;
-        public float Value;
+        [SerializeField]
+        Stats.STAT Stat;
+
+        [SerializeField]
+        float Value;
 
         public StatValue(Stats.STAT stat, float value) {
             this.Stat = stat;
             this.Value = value;
+        }
+
+        public Stats.STAT GetStat(){
+            return Stat;
+        }
+
+        public float GetValue(){
+            return Value;
         }
     }
 }

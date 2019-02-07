@@ -44,8 +44,8 @@ namespace LIMB {
         /// </summary>
         public Limb GetLimb(string limbName) {
             // TODO: probably better way to do this...
-            if(anatomy.Exists(x => x.name == limbName)) {
-                return anatomy.Find(x => x.name == limbName);
+            if(anatomy.Exists(x => x.GetName() == limbName)) {
+                return anatomy.Find(x => x.GetName() == limbName);
             }else {
                 Debug.LogError("Limb " + limbName + " not found on " + combatantName + ".");
                 return null;
@@ -69,8 +69,8 @@ namespace LIMB {
             }
 
             // TODO: probably better way to do this...
-            if(searchStats.Exists(x => x.Stat == stat)){
-                return searchStats.Find(x => x.Stat == stat).Value;
+            if(searchStats.Exists(x => x.GetStat() == stat)){
+                return searchStats.Find(x => x.GetStat() == stat).GetValue();
             }else{
                 return defaultStatValue;
             }
