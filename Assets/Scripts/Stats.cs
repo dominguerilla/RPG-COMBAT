@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LIMB {
     public static class Stats{
-        
+
         public enum CALCULATED_STAT{
             HP,
             MP,

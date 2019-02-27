@@ -19,22 +19,25 @@ namespace LIMB {
         GameObject modelPrefab;
 
         [SerializeField]
-        List<StatValue> baseStats;
+        int LVL=1, STR=1, DEX=1, END=1, INT=1, WIS=1, CHA=1, LCK=1;
+
+        [SerializeField]
+        List<StatValue> resistanceBonuses;
 
         [SerializeField]
         List<Limb> anatomy;
 
         private void OnEnable() {
-            this.baseStats = new List<StatValue>();
+            this.resistanceBonuses = new List<StatValue>();
             this.anatomy = new List<Limb>();
         }
 
         /// <summary>
         /// To initialize data after using ScriptableObject.CreateInstance to create this.
         /// </summary>
-        public void InitializeData(string name, List<StatValue> baseStats, List<Limb> anatomy, GameObject modelPrefab = null){
+        public void InitializeData(string name, List<StatValue> resistanceBonuses, List<Limb> anatomy, GameObject modelPrefab = null){
             this.combatantName = name;
-            this.baseStats = baseStats;
+            this.resistanceBonuses = resistanceBonuses;
             this.anatomy = anatomy;
             this.modelPrefab = modelPrefab;
         }
@@ -65,7 +68,7 @@ namespace LIMB {
                 Limb l = GetLimb(limb);
                 searchStats = l.GetLimbStats();
             }else {
-                searchStats = this.baseStats;
+                searchStats = this.resistanceBonuses;
             }
 
             // TODO: probably better way to do this...
@@ -97,7 +100,7 @@ namespace LIMB {
         }
 
         public void SetBaseStats(params StatValue[] stats) {
-            this.baseStats = new List<StatValue>(stats);
+            this.resistanceBonuses = new List<StatValue>(stats);
         }
 
         
