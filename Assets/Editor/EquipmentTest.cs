@@ -19,12 +19,12 @@ public class EquipmentTest {
     public void EquipArmorLightLimbBuff() {
         // creating helmet
         Equipment helmet = ScriptableObject.CreateInstance<Equipment>();
-        StatBuff buff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.PHYS_DEF);
+        StatBuff buff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.CALCULATED_STAT.PHYS_DEF);
         helmet.AddBuffs(buff);
         
         // creating hero
-        StatValue baseDef = new StatValue(Stats.STAT.PHYS_DEF, 5f);
-        StatValue headDef = new StatValue(Stats.STAT.PHYS_DEF, 5f);
+        StatValue baseDef = new StatValue(Stats.CALCULATED_STAT.PHYS_DEF, 5f);
+        StatValue headDef = new StatValue(Stats.CALCULATED_STAT.PHYS_DEF, 5f);
         Limb head = new Limb("Head", headDef);
 
         cData.SetName("Hero");
@@ -32,9 +32,9 @@ public class EquipmentTest {
         cData.SetAnatomy(head);
         
         com = new Combatant(cData);
-        float initialDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
+        float initialDef = com.GetTotalStat(Stats.CALCULATED_STAT.PHYS_DEF, "Head");
         com.Equip("Head", helmet);
-        float afterDef = com.GetTotalStat(Stats.STAT.PHYS_DEF, "Head");
+        float afterDef = com.GetTotalStat(Stats.CALCULATED_STAT.PHYS_DEF, "Head");
         Assert.Less(initialDef, afterDef);
         Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
     }
@@ -42,11 +42,11 @@ public class EquipmentTest {
     [Test]
     public void EquipArmorMediumLimbDebuff() {
         Equipment cursedRing = ScriptableObject.CreateInstance<Equipment>();
-        StatBuff curse = new StatBuff(StatBuff.DIRECTION.DOWN, StatBuff.MAGNITUDE.MEDIUM, Stats.STAT.DARK_DEF);
+        StatBuff curse = new StatBuff(StatBuff.DIRECTION.DOWN, StatBuff.MAGNITUDE.MEDIUM, Stats.CALCULATED_STAT.DARK_DEF);
         cursedRing.AddBuffs(curse);
 
-        StatValue baseDef = new StatValue(Stats.STAT.DARK_DEF, 3f);
-        StatValue handDef = new StatValue(Stats.STAT.DARK_DEF, 2f);
+        StatValue baseDef = new StatValue(Stats.CALCULATED_STAT.DARK_DEF, 3f);
+        StatValue handDef = new StatValue(Stats.CALCULATED_STAT.DARK_DEF, 2f);
         Limb hand = new Limb("Hand", handDef);
 
         cData.SetName("Mage");
@@ -54,10 +54,10 @@ public class EquipmentTest {
         cData.SetAnatomy(hand);
 
         com = new Combatant(cData);
-        float initialDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hand");
+        float initialDef = com.GetTotalStat(Stats.CALCULATED_STAT.DARK_DEF, "Hand");
         Debug.Log("Initial dark def: " + initialDef);
         com.Equip("Hand", cursedRing);
-        float afterDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hand");
+        float afterDef = com.GetTotalStat(Stats.CALCULATED_STAT.DARK_DEF, "Hand");
         Debug.Log("After dark def: " + afterDef);
         Assert.Less(afterDef,initialDef);
         Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
@@ -66,13 +66,13 @@ public class EquipmentTest {
     [Test]
     public void EquipOneNecklaceThreeLimbBuffsSameStat() {
         Equipment necklace = ScriptableObject.CreateInstance<Equipment>();
-        StatBuff buff1 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.FIRE_DEF);
-        StatBuff buff2 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.FIRE_DEF);
-        StatBuff buff3 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.FIRE_DEF);
+        StatBuff buff1 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.CALCULATED_STAT.FIRE_DEF);
+        StatBuff buff2 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.CALCULATED_STAT.FIRE_DEF);
+        StatBuff buff3 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.CALCULATED_STAT.FIRE_DEF);
         necklace.AddBuffs(buff1, buff2, buff3);
 
-        StatValue baseFireDef = new StatValue(Stats.STAT.FIRE_DEF, 5f);
-        StatValue chestFireDef = new StatValue(Stats.STAT.FIRE_DEF, 2f);
+        StatValue baseFireDef = new StatValue(Stats.CALCULATED_STAT.FIRE_DEF, 5f);
+        StatValue chestFireDef = new StatValue(Stats.CALCULATED_STAT.FIRE_DEF, 2f);
         Limb chest = new Limb("Chest", chestFireDef);
 
         cData.SetName("Firefighter");
@@ -80,9 +80,9 @@ public class EquipmentTest {
         cData.SetAnatomy(chest);
 
         com = new Combatant(cData);
-        float initialDef = com.GetTotalStat(Stats.STAT.FIRE_DEF, "Chest");
+        float initialDef = com.GetTotalStat(Stats.CALCULATED_STAT.FIRE_DEF, "Chest");
         com.Equip("Chest", necklace);
-        float afterDef = com.GetTotalStat(Stats.STAT.FIRE_DEF, "Chest");
+        float afterDef = com.GetTotalStat(Stats.CALCULATED_STAT.FIRE_DEF, "Chest");
         Assert.Less(initialDef, afterDef);
         Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
 
@@ -92,11 +92,11 @@ public class EquipmentTest {
     public void DeEquipArmorLimbBuff(){
         Equipment boots = ScriptableObject.CreateInstance<Equipment>();
         boots.SetName("Boots of Earth Def");
-        StatBuff defBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.MASSIVE, Stats.STAT.EARTH_DEF);
+        StatBuff defBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.MASSIVE, Stats.CALCULATED_STAT.EARTH_DEF);
         boots.AddBuffs(defBuff);
 
-        StatValue baseEarthDef = new StatValue(Stats.STAT.EARTH_DEF, 3f);
-        StatValue footEarthDef = new StatValue(Stats.STAT.EARTH_DEF, 1f);
+        StatValue baseEarthDef = new StatValue(Stats.CALCULATED_STAT.EARTH_DEF, 3f);
+        StatValue footEarthDef = new StatValue(Stats.CALCULATED_STAT.EARTH_DEF, 1f);
         Limb feet = new Limb("Feet", footEarthDef);
 
         cData.SetName("Warrior");
@@ -104,14 +104,14 @@ public class EquipmentTest {
         cData.SetAnatomy(feet);
 
         com = new Combatant(cData);
-        float initialDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
+        float initialDef = com.GetTotalStat(Stats.CALCULATED_STAT.EARTH_DEF, "Feet");
         com.Equip("Feet", boots);
-        float equippedDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
+        float equippedDef = com.GetTotalStat(Stats.CALCULATED_STAT.EARTH_DEF, "Feet");
         Assert.Less(initialDef, equippedDef);
         Debug.Log("Initial Def: " + initialDef);
 
         com.DeEquip(boots);
-        float dequippedDef = com.GetTotalStat(Stats.STAT.EARTH_DEF, "Feet");
+        float dequippedDef = com.GetTotalStat(Stats.CALCULATED_STAT.EARTH_DEF, "Feet");
         Assert.AreEqual(initialDef, dequippedDef);
         Debug.Log("Equipped Def: " + equippedDef + ", Dequip Def: " + dequippedDef);
     }
@@ -119,13 +119,13 @@ public class EquipmentTest {
     [Test]
     public void EquipArmorTwoBuffsOneDebuffSameLimbStat() {
         Equipment ring = ScriptableObject.CreateInstance<Equipment>();
-        StatBuff elecDefBoost1 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.ELECTRIC_DEF);
-        StatBuff elecDefBoost2 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.STAT.ELECTRIC_DEF);
-        StatBuff elecDefDebuff = new StatBuff(StatBuff.DIRECTION.DOWN, StatBuff.MAGNITUDE.SMALL, Stats.STAT.ELECTRIC_DEF);
+        StatBuff elecDefBoost1 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.CALCULATED_STAT.ELECTRIC_DEF);
+        StatBuff elecDefBoost2 = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.SMALL, Stats.CALCULATED_STAT.ELECTRIC_DEF);
+        StatBuff elecDefDebuff = new StatBuff(StatBuff.DIRECTION.DOWN, StatBuff.MAGNITUDE.SMALL, Stats.CALCULATED_STAT.ELECTRIC_DEF);
         ring.AddBuffs(elecDefBoost1, elecDefBoost2, elecDefDebuff);
 
-        StatValue baseElecDef = new StatValue(Stats.STAT.ELECTRIC_DEF, 7f);
-        StatValue handElecDef = new StatValue(Stats.STAT.ELECTRIC_DEF, 3f);
+        StatValue baseElecDef = new StatValue(Stats.CALCULATED_STAT.ELECTRIC_DEF, 7f);
+        StatValue handElecDef = new StatValue(Stats.CALCULATED_STAT.ELECTRIC_DEF, 3f);
         Limb hand = new Limb("Hands", handElecDef);
 
         cData.SetName("Lightning Archer");
@@ -133,9 +133,9 @@ public class EquipmentTest {
         cData.SetAnatomy(hand);
 
         com = new Combatant(cData);
-        float initialDef = com.GetTotalStat(Stats.STAT.ELECTRIC_DEF, "Hands");
+        float initialDef = com.GetTotalStat(Stats.CALCULATED_STAT.ELECTRIC_DEF, "Hands");
         com.Equip("Hands", ring);
-        float afterDef = com.GetTotalStat(Stats.STAT.ELECTRIC_DEF, "Hands");
+        float afterDef = com.GetTotalStat(Stats.CALCULATED_STAT.ELECTRIC_DEF, "Hands");
         Assert.Less(initialDef,afterDef);
         Debug.Log("Initial Def: " + initialDef + ", After Def: " + afterDef);
 
@@ -144,17 +144,17 @@ public class EquipmentTest {
     [Test]
     public void EquipTwoEquipsDifferentLimbBuffs() {
         Equipment ring = ScriptableObject.CreateInstance<Equipment>();
-        StatBuff ringBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.DARK_DEF);
+        StatBuff ringBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.CALCULATED_STAT.DARK_DEF);
         ring.AddBuffs(ringBuff);
 
         Equipment diodem = ScriptableObject.CreateInstance<Equipment>();
-        StatBuff diodemBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.STAT.MAG_ATK);
+        StatBuff diodemBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.LIGHT, Stats.CALCULATED_STAT.MAG_ATK);
         diodem.AddBuffs(diodemBuff);
 
-        StatValue baseDarkDef = new StatValue(Stats.STAT.DARK_DEF, 5f);
-        StatValue handDarkDef = new StatValue(Stats.STAT.DARK_DEF, 2f);
-        StatValue baseMagATK = new StatValue(Stats.STAT.MAG_ATK, 5f);
-        StatValue headMagATK = new StatValue(Stats.STAT.MAG_ATK, 2f);
+        StatValue baseDarkDef = new StatValue(Stats.CALCULATED_STAT.DARK_DEF, 5f);
+        StatValue handDarkDef = new StatValue(Stats.CALCULATED_STAT.DARK_DEF, 2f);
+        StatValue baseMagATK = new StatValue(Stats.CALCULATED_STAT.MAG_ATK, 5f);
+        StatValue headMagATK = new StatValue(Stats.CALCULATED_STAT.MAG_ATK, 2f);
         Limb hand = new Limb("Hands", handDarkDef);
         Limb head = new Limb("Head", headMagATK);
 
@@ -164,32 +164,32 @@ public class EquipmentTest {
 
         com = new Combatant(cData);
 
-        float initialHandDarkDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hands");
-        float initialHandMagATK = com.GetTotalStat(Stats.STAT.MAG_ATK, "Hands");
-        float initialHeadDarkDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Head");
-        float initialHeadMagATK = com.GetTotalStat(Stats.STAT.MAG_ATK, "Head");
+        float initialHandDarkDef = com.GetTotalStat(Stats.CALCULATED_STAT.DARK_DEF, "Hands");
+        float initialHandMagATK = com.GetTotalStat(Stats.CALCULATED_STAT.MAG_ATK, "Hands");
+        float initialHeadDarkDef = com.GetTotalStat(Stats.CALCULATED_STAT.DARK_DEF, "Head");
+        float initialHeadMagATK = com.GetTotalStat(Stats.CALCULATED_STAT.MAG_ATK, "Head");
 
         // check if dark def on hands increased
         com.Equip("Hands", ring);
-        float afterHandDarkDef = com.GetTotalStat(Stats.STAT.DARK_DEF, "Hands");
+        float afterHandDarkDef = com.GetTotalStat(Stats.CALCULATED_STAT.DARK_DEF, "Hands");
         Assert.Less(initialHandDarkDef, afterHandDarkDef);
 
         // check that dark def on head was not changed
-        Assert.AreEqual(initialHeadDarkDef, com.GetTotalStat(Stats.STAT.DARK_DEF, "Head"));
+        Assert.AreEqual(initialHeadDarkDef, com.GetTotalStat(Stats.CALCULATED_STAT.DARK_DEF, "Head"));
 
         // check if mag atk on head increased
         com.Equip("Head", diodem);
-        float afterHeadMagATK = com.GetTotalStat(Stats.STAT.MAG_ATK, "Head");
+        float afterHeadMagATK = com.GetTotalStat(Stats.CALCULATED_STAT.MAG_ATK, "Head");
         Assert.Less(initialHeadMagATK, afterHeadMagATK);
 
         // check that mag atk on hands was not changed
-        Assert.AreEqual(initialHandMagATK, com.GetTotalStat(Stats.STAT.MAG_ATK, "Hands"));        
+        Assert.AreEqual(initialHandMagATK, com.GetTotalStat(Stats.CALCULATED_STAT.MAG_ATK, "Hands"));        
     }
 
     [Test]
     public void BaseDefBuff() {
         Equipment helmet = ScriptableObject.CreateInstance<Equipment>();
-        StatBuff baseWaterDefBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.MEDIUM, Stats.STAT.WATER_DEF);
+        StatBuff baseWaterDefBuff = new StatBuff(StatBuff.DIRECTION.UP, StatBuff.MAGNITUDE.MEDIUM, Stats.CALCULATED_STAT.WATER_DEF);
         helmet.AddBuffs(baseWaterDefBuff);
     }
 
@@ -204,9 +204,9 @@ public class EquipmentTest {
 
         com = new Combatant(cData);
 
-        float initialDef = com.GetTotalStat(Stats.STAT.ICE_DEF, "Face");
+        float initialDef = com.GetTotalStat(Stats.CALCULATED_STAT.ICE_DEF, "Face");
         com.Equip("Face", mask);
-        float afterDef = com.GetTotalStat(Stats.STAT.ICE_DEF, "Face");
+        float afterDef = com.GetTotalStat(Stats.CALCULATED_STAT.ICE_DEF, "Face");
         Assert.AreEqual(initialDef, afterDef);
     }
 }

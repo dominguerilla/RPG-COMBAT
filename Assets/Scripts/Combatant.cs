@@ -36,7 +36,7 @@ namespace LIMB {
         /// <param name="combatantData"></param>
         public Combatant(CombatantData combatantData){
             this.combatantData = combatantData;
-            this.currentHealth = combatantData.GetStat(Stats.STAT.HP);
+            this.currentHealth = combatantData.GetStat(Stats.CALCULATED_STAT.HP);
         }
 
 
@@ -82,7 +82,7 @@ namespace LIMB {
         /// </summary>
         /// <returns></returns>
         public float GetTotalResistance(Damage.TYPE type, string limbName) {
-            Stats.STAT stat = Stats.GetResistance(type);
+            Stats.CALCULATED_STAT stat = Stats.GetResistance(type);
 
             float resistance = 0f;
             if(limbName != null){
@@ -102,7 +102,7 @@ namespace LIMB {
         /// Returns the calculated value of stat based on base stats, limb stats, and equipment buffs of the given limb
         /// </summary>
         /// <returns></returns>
-        public float GetTotalStat(Stats.STAT stat, string limbName) {
+        public float GetTotalStat(Stats.CALCULATED_STAT stat, string limbName) {
             Limb limb = GetLimb(limbName);
             float baseStat = GetRawStat(stat);
             float equippedStat = limb.GetBuffedStatus(stat, baseStat);
@@ -124,7 +124,7 @@ namespace LIMB {
             Debug.LogError("No equipment matching " + equip.name + " found.");
         }
 
-        public float GetRawStat(Stats.STAT stat, string limbName = null) {
+        public float GetRawStat(Stats.CALCULATED_STAT stat, string limbName = null) {
             return this.combatantData.GetStat(stat, limbName);
         }
 

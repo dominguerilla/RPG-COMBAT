@@ -38,7 +38,7 @@ namespace LIMB {
             return this.equipment.Contains(equipment);
         }
 
-        public float GetBuffedStatus(Stats.STAT stat, float baseStat) {
+        public float GetBuffedStatus(Stats.CALCULATED_STAT stat, float baseStat) {
             float totalStats = baseStat + GetStat(stat);
 
             float percentageDelta = 0f;
@@ -59,7 +59,7 @@ namespace LIMB {
             return this.limbStats;
         }
 
-        public float GetStat(Stats.STAT stat) {
+        public float GetStat(Stats.CALCULATED_STAT stat) {
             // TODO duplication in CombatantData.GetStat()
             if (limbStats.Exists(x => x.GetStat() == stat)) {
                 return limbStats.Find(x => x.GetStat() == stat).GetValue();

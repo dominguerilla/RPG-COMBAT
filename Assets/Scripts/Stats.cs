@@ -5,8 +5,7 @@ using UnityEngine;
 namespace LIMB {
     public static class Stats{
         
-        public enum STAT{
-            LVL,
+        public enum CALCULATED_STAT{
             HP,
             MP,
             ACCURACY,
@@ -39,12 +38,12 @@ namespace LIMB {
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static STAT GetResistance(Damage.TYPE type) {
+        public static CALCULATED_STAT GetResistance(Damage.TYPE type) {
             switch(type) {
                 case Damage.TYPE.BLUNT:
                 case Damage.TYPE.SLASH:
                 case Damage.TYPE.STAB:
-                    return STAT.PHYS_DEF;
+                    return CALCULATED_STAT.PHYS_DEF;
                 default:
                     throw new System.MissingFieldException("Damage type " + type.ToString() + " has no resistance.");
             }

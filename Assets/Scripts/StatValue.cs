@@ -7,17 +7,17 @@ namespace LIMB {
     public class StatValue {
 
         [SerializeField]
-        Stats.STAT Stat;
+        Stats.CALCULATED_STAT Stat;
 
         [SerializeField]
         float Value;
 
-        public StatValue(Stats.STAT stat, float value) {
+        public StatValue(Stats.CALCULATED_STAT stat, float value) {
             this.Stat = stat;
             this.Value = value;
         }
 
-        public Stats.STAT GetStat(){
+        public Stats.CALCULATED_STAT GetStat(){
             return Stat;
         }
 
