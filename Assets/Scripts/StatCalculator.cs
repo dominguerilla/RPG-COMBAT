@@ -11,7 +11,7 @@ namespace LIMB {
     public abstract class StatCalculator {
 
         public string[] STATS;
-        public abstract float CalculateStat(Combatant combatant, Stats.CALCULATED_STAT stat);
+        public abstract float CalculateStat(Combatant combatant, Stats.DERIVED_STAT stat);
         /*    
             switch(stat) {
                 case STATS.HP:

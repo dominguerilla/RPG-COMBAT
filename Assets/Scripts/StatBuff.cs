@@ -25,10 +25,10 @@ namespace LIMB {
 
         public MAGNITUDE Magnitude;
         public DIRECTION Direction;
-        public Stats.CALCULATED_STAT Stat;
+        public Stats.DERIVED_STAT Stat;
         public float flatBuff = 1.0f;
 
-        public StatBuff(StatBuff.DIRECTION dir, StatBuff.MAGNITUDE mag, Stats.CALCULATED_STAT stat){
+        public StatBuff(StatBuff.DIRECTION dir, StatBuff.MAGNITUDE mag, Stats.DERIVED_STAT stat){
             this.Direction = dir;
             this.Magnitude = mag;
             this.Stat = stat;

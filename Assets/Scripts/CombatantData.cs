@@ -61,7 +61,7 @@ namespace LIMB {
         /// <param name="stat"></param>
         /// <param name="limb"></param>
         /// <returns></returns>
-        public float GetStat(Stats.CALCULATED_STAT stat, string limb = null){
+        public float GetStat(Stats.DERIVED_STAT stat, string limb = null){
             // if limb is null, return base stat
             List<StatValue> searchStats;
             if (limb != null) {

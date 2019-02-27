@@ -18,7 +18,7 @@ namespace LIMB {
         /// <summary>
         /// Returns all the buffs pertaining to a given stat.
         /// </summary>
-        public List<StatBuff> GetBuffs(Stats.CALCULATED_STAT stat) {
+        public List<StatBuff> GetBuffs(Stats.DERIVED_STAT stat) {
             if(this.StatBuffs == null)
                 this.StatBuffs = new List<StatBuff>();
 

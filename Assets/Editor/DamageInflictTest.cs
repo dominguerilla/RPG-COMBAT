@@ -21,8 +21,8 @@ public class DamageInflictTest {
 
     [Test]
     public void DamageInflict1FlatDamage() {
-        StatValue def = new StatValue(Stats.CALCULATED_STAT.PHYS_DEF, 3.0f);
-        StatValue health = new StatValue(Stats.CALCULATED_STAT.HP, 5.0f);
+        StatValue def = new StatValue(Stats.DERIVED_STAT.PHYS_DEF, 3.0f);
+        StatValue health = new StatValue(Stats.DERIVED_STAT.HP, 5.0f);
         Limb core = new Limb("Core");
         Limb body = new Limb("Body");
 
@@ -44,18 +44,18 @@ public class DamageInflictTest {
     // simulates an attack to a bandit's head and body.
     public void DifferentHeadBodyDamage(){
         // create Head stats
-        StatValue headDef = new StatValue(Stats.CALCULATED_STAT.PHYS_DEF, 1.0f);
+        StatValue headDef = new StatValue(Stats.DERIVED_STAT.PHYS_DEF, 1.0f);
         Limb head = new Limb("Head", headDef);
         anatomy.Add(head);
 
         // create Body stats
-        StatValue bodyDef = new StatValue(Stats.CALCULATED_STAT.PHYS_DEF, 3.0f);
+        StatValue bodyDef = new StatValue(Stats.DERIVED_STAT.PHYS_DEF, 3.0f);
         Limb body = new Limb("Body", bodyDef);
         anatomy.Add(body);
 
         // create Base stats
-        StatValue baseDef = new StatValue(Stats.CALCULATED_STAT.PHYS_DEF, 3.0f);
-        StatValue health = new StatValue(Stats.CALCULATED_STAT.HP, 100.0f);
+        StatValue baseDef = new StatValue(Stats.DERIVED_STAT.PHYS_DEF, 3.0f);
+        StatValue health = new StatValue(Stats.DERIVED_STAT.HP, 100.0f);
         stats.Add(health);
         stats.Add(baseDef);
 
