@@ -49,6 +49,21 @@ namespace LIMB {
             }
         }
 
+        /// <summary>
+        /// Returns the value of the derived stat specified based on the combatant's innate stats (without equipment)
+        /// </summary>
+        /// <param name="queryStat"></param>
+        public static float CalculateRawDerivedStat(Stats.DERIVED_STAT queryStat, CombatantData combatantData){
+            // I'm just bullshitting these formulas
+            switch (queryStat){
+                case DERIVED_STAT.HP:
+                    return (combatantData.END * 10f) + (combatantData.LVL * 3f);
+                case DERIVED_STAT.MP:
+                    return (combatantData.INT * 10f) + (combatantData.WIS * 10f) + (combatantData.LVL * 4f);
+                default:
+                    throw new System.NotImplementedException();
+            }
+        }
 
         /// <summary>
         /// Calculates the magnitude of the damage given a Damage object.

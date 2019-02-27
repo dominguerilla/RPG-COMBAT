@@ -19,7 +19,7 @@ namespace LIMB {
         GameObject modelPrefab;
 
         [SerializeField]
-        int LVL=1, STR=1, DEX=1, END=1, INT=1, WIS=1, CHA=1, LCK=1;
+        public int LVL=1, STR=1, DEX=1, END=1, INT=1, WIS=1, CHA=1, LCK=1;
 
         [SerializeField]
         List<StatValue> resistanceBonuses;
