@@ -1,5 +1,5 @@
 # LIMBS Battle System
-All participants in the LIBMS Battle System are referred to as 'fighters'.
+All participants in the LIMBS Battle System are referred to as 'fighters'.
 The implementer of the system is referred to as the 'designer'.
 
 ## Stats

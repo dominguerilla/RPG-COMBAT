@@ -37,7 +37,7 @@ public class DamageInflictTest {
         comb.InflictDamage(dmg);
 
         // Use the Assert class to test conditions.
-        Assert.Less(comb.GetCurrentHealth(), originalHealth);
+        Assert.AreEqual(comb.GetCurrentHealth(), originalHealth - 1f);
     }
 
     [Test]
